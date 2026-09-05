@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Doctor</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/add_doctor.css' %}">
+<style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f6fb;
+    color: #202438;
+}
+
+.doctor-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 45px 25px 70px;
+}
+
+
+/* HEADER */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.small-title {
+    color: #5965e8;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.page-header h1 {
+    margin-top: 7px;
+    font-size: 38px;
+    letter-spacing: -1.5px;
+}
+
+.page-header h1 span {
+    color: #5965e8;
+}
+
+.page-header p {
+    margin-top: 8px;
+    color: #969aaa;
+    font-size: 11px;
+}
+
+.header-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+
+    display: grid;
+    place-items: center;
+
+    background: #5965e8;
+    color: white;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 12px 25px rgba(89,101,232,.25);
+}
+
+
+/* FORM CARD */
+
+.form-card {
+    background: white;
+    border: 1px solid #e8eaf1;
+    border-radius: 22px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 20px 60px rgba(30,35,70,.07);
+}
+
+
+/* FORM TOP */
+
+.form-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eeeeF3;
+
+    margin-bottom: 28px;
+}
+
+.doctor-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    background: #eeeeff;
+    color: #5965e8;
+
+    border-radius: 13px;
+
+    font-size: 23px;
+}
+
+.form-top h2 {
+    font-size: 19px;
+}
+
+.form-top p {
+    margin-top: 4px;
+    color: #999cab;
+    font-size: 9px;
+}
+
+
+/* IMAGE */
+
+.image-section {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 20px;
+
+    background: #f8f9fd;
+
+    border: 1px dashed #dfe2ec;
+
+    border-radius: 15px;
+
+    margin-bottom: 30px;
+}
+
+.image-preview {
+    width: 90px;
+    height: 90px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: #eeeeff;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    color: #5965e8;
+
+    font-size: 30px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.image-content h3 {
+    font-size: 13px;
+}
+
+.image-content p {
+    margin: 5px 0 10px;
+
+    color: #969aaa;
+    font-size: 9px;
+}
+
+.upload-btn {
+    display: inline-block;
+
+    padding: 8px 13px;
+
+    background: #5965e8;
+    color: white;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.upload-btn input {
+    display: none;
+}
+
+
+/* FORM GRID */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 22px 25px;
+}
+
+.field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #565a6c;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+.input-box {
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e2e4eb;
+
+    border-radius: 10px;
+
+    background: white;
+
+    transition: .25s;
+}
+
+.input-box:focus-within {
+    border-color: #5965e8;
+
+    box-shadow:
+        0 0 0 4px rgba(89,101,232,.08);
+}
+
+.input-box > span {
+    color: #8e93a5;
+    font-size: 14px;
+}
+
+.input-box input {
+    flex: 1;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-family: inherit;
+
+    color: #33374b;
+
+    font-size: 10px;
+}
+
+.input-box input::placeholder {
+    color: #b3b6c1;
+}
+
+.input-box small {
+    color: #9b9ead;
+    font-size: 8px;
+}
+
+
+/* STATUS */
+
+.full-field {
+    grid-column: 1 / -1;
+}
+
+.status-options {
+    display: flex;
+    gap: 15px;
+}
+
+.status-card {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #e5e7ed;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.status-card:hover {
+    border-color: #5965e8;
+    background: #fafaff;
+}
+
+.status-card input {
+    display: none;
+}
+
+.status-dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+}
+
+.status-dot.active {
+    background: #27b981;
+}
+
+.status-dot.inactive {
+    background: #e56b76;
+}
+
+.status-card strong {
+    display: block;
+    font-size: 10px;
+}
+
+.status-card small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #999dac;
+
+    font-size: 8px;
+}
+
+
+/* FOOTER */
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eeeeF3;
+}
+
+.form-footer button {
+    height: 43px;
+
+    padding: 0 22px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.cancel-btn {
+    background: white;
+
+    color: #777b8c;
+
+    border: 1px solid #e1e3ea;
+}
+
+.cancel-btn:hover {
+    background: #f5f6f9;
+}
+
+.save-btn {
+    border: none;
+
+    background: #5965e8;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(89,101,232,.2);
+}
+
+.save-btn:hover {
+    background: #444fd1;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width: 700px) {
+
+    .doctor-page {
+        padding: 30px 15px;
+    }
+
+    .page-header h1 {
+        font-size: 30px;
+    }
+
+    .header-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .form-card {
+        padding: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-field {
+        grid-column: auto;
+    }
+
+    .status-options {
+        flex-direction: column;
+    }
+
+}
+
+@media(max-width: 450px) {
+
+    .page-header {
+        align-items: flex-start;
+    }
+
+    .image-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-footer {
+        flex-direction: column;
+    }
+
+    .form-footer button {
+        width: 100%;
+    }
+
+}</style>
+</head>
+
+
+<body>
+
+
+<div class="doctor-page">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="small-title">
+                MEDICAL MANAGEMENT
+            </span>
+
+            <h1>
+                Add New <span>Doctor</span>
+            </h1>
+
+            <p>
+                Create a professional profile for your medical staff.
+            </p>
+
+        </div>
+
+
+        <div class="header-icon">
+            +
+        </div>
+
+    </div>
+
+
+
+    <!-- FORM CARD -->
+
+    <div class="form-card">
+
+
+        <!-- FORM HEADER -->
+
+        <div class="form-top">
+
+            <div class="doctor-icon">
+                ⚕
+            </div>
+
+            <div>
+
+                <h2>
+                    Doctor Information
+                </h2>
+
+                <p>
+                    Enter the doctor's details below.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+
+
+            <!-- IMAGE -->
+
+            <div class="image-section">
+
+                <div class="image-preview"
+                     id="imagePreview">
+
+                    <span id="imageIcon">
+                        👨‍⚕️
+                    </span>
+
+                    <img
+                        id="preview"
+                        style="display:none;"
+                    >
+
+                </div>
+
+
+                <div class="image-content">
+
+                    <h3>
+                        Doctor Photo
+                    </h3>
+
+                    <p>
+                        Upload a professional doctor image.
+                    </p>
+
+                    <label class="upload-btn">
+
+                        Choose Image
+
+                        <input
+                            type="file"
+                            name="Image"
+                            id="doctorImage"
+                            accept="image/*"
+                            required
+                        >
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FORM GRID -->
+
+            <div class="form-grid">
+
+
+                <!-- FIRST NAME -->
+
+                <div class="field">
+
+                    <label>
+                        Doctor Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>👤</span>
+
+                        <input
+                            type="text"
+                            name="Dr_first_name"
+                            placeholder="Enter doctor name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUALIFICATION -->
+
+                <div class="field">
+
+                    <label>
+                        Qualification
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>🎓</span>
+
+                        <input
+                            type="text"
+                            name="Dr_Qualification"
+                            placeholder="e.g. MBBS, MD"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="field">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>@</span>
+
+                        <input
+                            type="email"
+                            name="Dr_email"
+                            placeholder="doctor@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="field">
+
+                    <label>
+                        Experience
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>★</span>
+
+                        <input
+                            type="number"
+                            name="Expreince"
+                            placeholder="Years of experience"
+                            min="0"
+                            required
+                        >
+
+                        <small>
+                            Years
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="field">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>☎</span>
+
+                        <input
+                            type="tel"
+                            name="Number"
+                            placeholder="Enter phone number"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SPECIALIZATION -->
+
+                <div class="field">
+
+                    <label>
+                        Specialization
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>⚕</span>
+
+                        <input
+                            type="text"
+                            name="specialization"
+                            placeholder="e.g. Cardiologist"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="field full-field">
+
+                    <label>
+                        Doctor Status
+                    </label>
+
+                    <div class="status-options">
+
+
+                        <label class="status-card">
+
+                            <input
+                                type="radio"
+                                name="Status"
+                                value="Active"
+                                required
+                            >
+
+                            <span class="status-dot active"></span>
+
+                            <div>
+
+                                <strong>
+                                    Active
+                                </strong>
+
+                                <small>
+                                    Available for patients
+                                </small>
+
+                            </div>
+
+                        </label>
+
+
+
+                        <label class="status-card">
+
+                            <input
+                                type="radio"
+                                name="Status"
+                                value="Inactive"
+                            >
+
+                            <span class="status-dot inactive"></span>
+
+                            <div>
+
+                                <strong>
+                                    Inactive
+                                </strong>
+
+                                <small>
+                                    Currently unavailable
+                                </small>
+
+                            </div>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-footer">
+
+                <button
+                    type="reset"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    <span>✓</span>
+                    Save Doctor
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+
+<script src="{% static 'js/add_doctor.js' %}"></script>
+
+</body>
+
+</html>

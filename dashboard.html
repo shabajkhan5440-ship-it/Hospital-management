@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MedixCare Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">M</div>
+
+            <div>
+                <h2>Medix<span>Care</span></h2>
+                <small>Hospital Management</small>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <p class="menu-title">MAIN MENU</p>
+
+            <a href="#" class="menu-item active">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="/profile/" class="menu-item">
+                <span>♙</span>
+                Patients
+            </a>
+
+            <a href="/View/" class="menu-item">
+                <span>⚕</span>
+                Doctors
+            </a>
+
+            <a href="/Appointment/" class="menu-item">
+                <span>▣</span>
+                Appointments
+            </a>
+
+            <p class="menu-title">MANAGEMENT</p>
+
+            <a href="/labratory/" class="menu-item">
+                <span>🧪</span>
+                Laboratory
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>◉</span>
+                DICOM
+            </a>
+
+            <a href="/Billing/" class="menu-item">
+                <span>▤</span>
+                Billing
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <p class="menu-title">SYSTEM</p>
+
+            <a href="#" class="menu-item">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="{% url 'help_center' %}" class="menu-item">
+                <span>?</span>
+                Help Center
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">✦</div>
+
+                <h3>Medical Analytics</h3>
+
+                <p>
+                    Get advanced hospital
+                    performance reports.
+                </p>
+
+                <button>Explore Now</button>
+
+            </div>
+
+            <div class="user-box">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div class="user-info">
+                    <strong>Admin User</strong>
+                    <small>Administrator</small>
+                </div>
+
+                <span>⋮</span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button class="mobile-menu"
+                        id="mobileMenu">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Good Evening, Admin 👋</h1>
+
+                    <p>
+                        Here's what's happening in your hospital today.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="search">
+                    <span>⌕</span>
+
+                    <input type="text"
+                           id="searchInput"
+                           placeholder="Search anything...">
+
+                    <kbd>⌘ K</kbd>
+                </div>
+
+                <button class="icon-button"
+                        id="notificationBtn">
+                    ♢
+                    <i></i>
+                </button>
+
+                <button class="theme-button"
+                        id="themeButton">
+                    ◐
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+
+                    <span>⌄</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- STATISTICS -->
+            <div class="stats-grid">
+
+                <div class="stat-card blue">
+
+                    <div class="stat-top">
+                        <div class="stat-icon">
+                            ♙
+                        </div>
+
+                        <span class="growth positive">
+                            ↑ 12.5%
+                        </span>
+                    </div>
+
+                    <p>Total Patients</p>
+
+                    <h2>
+                        {{ total_patients }}
+                    </h2>
+
+                    <small>
+                        Compared to last month
+                    </small>
+
+                    <div class="mini-chart">
+                        <span style="height:35%"></span>
+                        <span style="height:48%"></span>
+                        <span style="height:42%"></span>
+                        <span style="height:63%"></span>
+                        <span style="height:55%"></span>
+                        <span style="height:78%"></span>
+                        <span style="height:90%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card purple">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            ⚕
+                        </div>
+
+                        <span class="growth positive">
+                            ↑ 8.2%
+                        </span>
+
+                    </div>
+
+                    <p>Total Doctors</p>
+
+                    <h2>
+                        {{ total_doctors }}
+                    </h2>
+
+                    <small>
+                        Active medical staff
+                    </small>
+
+                    <div class="mini-chart">
+                        <span style="height:40%"></span>
+                        <span style="height:55%"></span>
+                        <span style="height:48%"></span>
+                        <span style="height:68%"></span>
+                        <span style="height:60%"></span>
+                        <span style="height:75%"></span>
+                        <span style="height:85%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card orange">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            ▣
+                        </div>
+
+                        <span class="growth positive">
+                            ↑ 5.4%
+                        </span>
+
+                    </div>
+
+                    <p>Appointments</p>
+
+                    <h2>
+                        {{ appointments }}
+                    </h2>
+
+                    <small>
+                        Today's appointments
+                    </small>
+
+                    <div class="mini-chart">
+                        <span style="height:70%"></span>
+                        <span style="height:55%"></span>
+                        <span style="height:80%"></span>
+                        <span style="height:65%"></span>
+                        <span style="height:90%"></span>
+                        <span style="height:76%"></span>
+                        <span style="height:95%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card green">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon">
+                            🧪
+                        </div>
+
+                        <span class="growth negative">
+                            ↓ 2.1%
+                        </span>
+
+                    </div>
+
+                    <p>Lab Tests</p>
+
+                    <h2>
+                        {{ lab_tests }}
+                    </h2>
+
+                    <small>
+                        Tests processed this month
+                    </small>
+
+                    <div class="mini-chart">
+                        <span style="height:80%"></span>
+                        <span style="height:65%"></span>
+                        <span style="height:72%"></span>
+                        <span style="height:55%"></span>
+                        <span style="height:62%"></span>
+                        <span style="height:48%"></span>
+                        <span style="height:58%"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYTICS -->
+            <div class="analytics-grid">
+
+                <div class="panel revenue-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Patient Overview</h2>
+
+                            <p>
+                                Patient registration statistics
+                            </p>
+                        </div>
+
+                        <select id="chartFilter">
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+                            <option>Last 6 months</option>
+                        </select>
+
+                    </div>
+
+                    <div class="chart">
+
+                        <div class="chart-y">
+                            <span>400</span>
+                            <span>300</span>
+                            <span>200</span>
+                            <span>100</span>
+                            <span>0</span>
+                        </div>
+
+                        <div class="chart-area">
+
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+
+                            <svg
+                                viewBox="0 0 700 260"
+                                preserveAspectRatio="none">
+
+                                <defs>
+                                    <linearGradient
+                                        id="areaGradient"
+                                        x1="0"
+                                        x2="0"
+                                        y1="0"
+                                        y2="1">
+
+                                        <stop
+                                            offset="0%"
+                                            stop-opacity=".25"/>
+
+                                        <stop
+                                            offset="100%"
+                                            stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path
+                                    class="area"
+                                    d="M0 210
+                                    C80 180 90 195 140 150
+                                    C190 105 210 160 260 130
+                                    C320 95 330 130 380 90
+                                    C430 50 450 115 500 80
+                                    C550 40 580 75 620 50
+                                    C660 30 680 50 700 25
+                                    L700 260
+                                    L0 260 Z"/>
+
+                                <path
+                                    class="line"
+                                    d="M0 210
+                                    C80 180 90 195 140 150
+                                    C190 105 210 160 260 130
+                                    C320 95 330 130 380 90
+                                    C430 50 450 115 500 80
+                                    C550 40 580 75 620 50
+                                    C660 30 680 50 700 25"/>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-days">
+
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                        <span>Sun</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Quick Actions</h2>
+
+                            <p>
+                                Frequently used actions
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="quick-actions">
+
+                        <button>
+                            <span class="qa-icon blue-bg">♙</span>
+                            <span>
+                                <strong><a href="/add_patient/">Add Patient</a></strong>
+                                <small>Register new patient</small>
+                            </span>
+                            <b>→</b>
+                        </button>
+
+                        <button>
+
+                            <span class="qa-icon purple-bg">⚕</span>
+                            <span>
+                                <strong>
+                                    <a href="/Doctor_list/">
+                                    Add Doctor</a></strong>
+                                <small>Create doctor profile</small>
+                            </span>
+                            <b>→</b>
+                        </button>
+
+                        <button>
+                            <span class="qa-icon orange-bg">▣</span>
+                            <span>
+                                <strong>Appointment</strong>
+                                <small>Schedule appointment</small>
+                            </span>
+                            <b>→</b>
+                        </button>
+
+                        <button>
+                            <span class="qa-icon green-bg">🧪</span>
+                            <span>
+                                <strong>Lab Test</strong>
+                                <small>Create new test</small>
+                            </span>
+                            <b>→</b>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM GRID -->
+            <div class="bottom-grid">
+
+                <!-- APPOINTMENTS -->
+                <div class="panel appointments-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Today's Appointments</h2>
+
+                            <p>
+                                Upcoming patient appointments
+                            </p>
+                        </div>
+
+                        <button class="view-all">
+                            View All →
+                        </button>
+
+                    </div>
+
+                    <div class="appointment-list">
+
+                        <div class="appointment">
+
+                            <div class="patient-avatar">
+                                RK
+                            </div>
+
+                            <div class="appointment-info">
+
+                                <strong>Rahul Kumar</strong>
+
+                                <span>
+                                    General Medicine
+                                </span>
+
+                            </div>
+
+                            <div class="appointment-time">
+                                <strong>10:30 AM</strong>
+                                <span>Room 204</span>
+                            </div>
+
+                            <span class="status confirmed">
+                                Confirmed
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment">
+
+                            <div class="patient-avatar">
+                                AS
+                            </div>
+
+                            <div class="appointment-info">
+
+                                <strong>Anjali Sharma</strong>
+
+                                <span>
+                                    Cardiology
+                                </span>
+
+                            </div>
+
+                            <div class="appointment-time">
+                                <strong>11:15 AM</strong>
+                                <span>Room 301</span>
+                            </div>
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment">
+
+                            <div class="patient-avatar">
+                                MK
+                            </div>
+
+                            <div class="appointment-info">
+
+                                <strong>Mohit Khan</strong>
+
+                                <span>
+                                    Radiology
+                                </span>
+
+                            </div>
+
+                            <div class="appointment-time">
+                                <strong>12:30 PM</strong>
+                                <span>Room 108</span>
+                            </div>
+
+                            <span class="status confirmed">
+                                Confirmed
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment">
+
+                            <div class="patient-avatar">
+                                PS
+                            </div>
+
+                            <div class="appointment-info">
+
+                                <strong>Priya Singh</strong>
+
+                                <span>
+                                    Gynecology
+                                </span>
+
+                            </div>
+
+                            <div class="appointment-time">
+                                <strong>02:00 PM</strong>
+                                <span>Room 210</span>
+                            </div>
+
+                            <span class="status cancelled">
+                                Cancelled
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DEPARTMENT -->
+                <div class="panel department-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Departments</h2>
+
+                            <p>
+                                Patient distribution
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="department">
+
+                        <div class="department-icon cardiology">
+                            ♥
+                        </div>
+
+                        <div class="department-info">
+                            <strong>Cardiology</strong>
+
+                            <div class="progress">
+                                <span style="width:78%"></span>
+                            </div>
+                        </div>
+
+                        <b>78%</b>
+
+                    </div>
+
+
+                    <div class="department">
+
+                        <div class="department-icon radiology">
+                            ◉
+                        </div>
+
+                        <div class="department-info">
+                            <strong>Radiology</strong>
+
+                            <div class="progress">
+                                <span style="width:62%"></span>
+                            </div>
+                        </div>
+
+                        <b>62%</b>
+
+                    </div>
+
+
+                    <div class="department">
+
+                        <div class="department-icon medicine">
+                            ✚
+                        </div>
+
+                        <div class="department-info">
+                            <strong>Medicine</strong>
+
+                            <div class="progress">
+                                <span style="width:85%"></span>
+                            </div>
+                        </div>
+
+                        <b>85%</b>
+
+                    </div>
+
+
+                    <div class="department">
+
+                        <div class="department-icon dental">
+                            ✦
+                        </div>
+
+                        <div class="department-info">
+                            <strong>Dental</strong>
+
+                            <div class="progress">
+                                <span style="width:45%"></span>
+                            </div>
+                        </div>
+
+                        <b>45%</b>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+</body>
+</html>
+

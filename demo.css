@@ -1,0 +1,212 @@
+/* ================= HEADER BUTTONS ================= */
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.patient-btn {
+    background: #e9f4ff;
+    color: #0878ed;
+    padding: 14px 18px;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.patient-btn i {
+    margin-right: 6px;
+}
+
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 20px rgba(25, 55, 90, 0.05);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+
+.blue-icon {
+    background: #e8f3ff;
+    color: #0878ed;
+}
+
+.green-icon {
+    background: #e4f8ee;
+    color: #0a9b5a;
+}
+
+.stat-card span {
+    color: #66758c;
+    font-size: 13px;
+}
+
+.stat-card h2 {
+    margin-top: 5px;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 20, 40, 0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 680px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+}
+
+.modal-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5ebf2;
+}
+
+.modal-header button {
+    background: transparent;
+    font-size: 20px;
+}
+
+.form-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #dbe4ed;
+    border-radius: 6px;
+    padding: 11px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0878ed;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.modal-actions {
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel,
+.save {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cancel {
+    background: #edf1f5;
+}
+
+.save {
+    background: #0878ed;
+    color: white;
+}
+
+
+/* ================= EDIT / DELETE ================= */
+
+.actions a {
+    width: 42px;
+    height: 36px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.actions .edit {
+    background: #ffb000;
+}
+
+.actions .delete {
+    background: #f3293f;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .header-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+}

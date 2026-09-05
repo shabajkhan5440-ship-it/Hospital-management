@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Patient | MediCare Hospital</title>
+
+    <link rel="stylesheet" href="add_patient.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #f5fafa;
+    color: #183237;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 78px;
+    background: white;
+
+    border-bottom: 1px solid #e5eeee;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+.nav-container {
+    height: 100%;
+
+    width: min(1200px, 92%);
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo > span:last-child {
+    color: #079d91;
+}
+
+.logo-icon {
+    width: 39px;
+    height: 39px;
+
+    border-radius: 10px;
+
+    background: #079d91;
+    color: white;
+
+    display: grid;
+    place-items: center;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #65777b;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #079d91;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.profile-icon {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 50%;
+
+    background: #e5f7f4;
+
+    color: #079d91;
+
+    display: grid;
+    place-items: center;
+}
+
+.profile strong,
+.profile small {
+    display: block;
+}
+
+.profile strong {
+    font-size: 11px;
+}
+
+.profile small {
+    color: #89989b;
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+.menu {
+    display: none;
+
+    border: 0;
+    background: transparent;
+
+    font-size: 23px;
+}
+
+
+/* ================= PAGE HEADER ================= */
+
+.page-header {
+    background: white;
+
+    padding: 40px 0 45px;
+
+    border-bottom: 1px solid #e5eeee;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #8a989b;
+
+    font-size: 10px;
+}
+
+.breadcrumb a:hover {
+    color: #079d91;
+}
+
+.breadcrumb i {
+    font-size: 8px;
+}
+
+.header-content {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: end;
+}
+
+.page-tag {
+    color: #079d91;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.header-content h1 {
+    font-size: 43px;
+
+    line-height: 1.1;
+
+    margin: 12px 0;
+}
+
+.header-content h1 span {
+    color: #079d91;
+}
+
+.header-content p:last-child {
+    color: #77878a;
+
+    font-size: 12px;
+}
+
+.back-btn {
+    padding: 12px 17px;
+
+    background: #eff9f7;
+
+    color: #079d91;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* ================= FORM ================= */
+
+.patient-section {
+    padding: 50px 0 90px;
+}
+
+.patient-form {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.form-card {
+    background: white;
+
+    border: 1px solid #e2eeee;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    margin-bottom: 22px;
+
+    box-shadow: 0 8px 30px rgba(16, 65, 69, .035);
+}
+
+.form-card-header {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 23px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #edf2f2;
+}
+
+.form-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: #e5f8f5;
+
+    color: #079d91;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 18px;
+}
+
+.form-icon.emergency {
+    background: #fff1ed;
+    color: #e96d4f;
+}
+
+.form-icon.medical {
+    background: #eaf2ff;
+    color: #477bd8;
+}
+
+.form-icon.insurance {
+    background: #f2edff;
+    color: #7c5bd6;
+}
+
+.form-card-header h2 {
+    font-size: 17px;
+}
+
+.form-card-header p {
+    color: #8a989b;
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* GRID */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.input-group.full {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    color: #405357;
+}
+
+.input-group label span {
+    color: #e45252;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+
+    border: 1px solid #dce8e8;
+
+    background: #fbfdfd;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    color: #415357;
+
+    font-size: 12px;
+
+    transition: .3s;
+}
+
+.input-group input,
+.input-group select {
+    height: 45px;
+
+    padding: 0 13px;
+}
+
+.input-group textarea {
+    min-height: 105px;
+
+    resize: vertical;
+
+    padding: 13px;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #079d91;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(7,157,145,.08);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #a4b0b2;
+}
+
+
+/* ================= ACTIONS ================= */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+.cancel-btn,
+.reset-btn,
+.save-btn {
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+}
+
+.cancel-btn {
+    color: #77878a;
+
+    background: white;
+
+    border: 1px solid #dce8e8;
+}
+
+.reset-btn {
+    color: #079d91;
+
+    background: #eaf8f6;
+
+    border: 0;
+}
+
+.save-btn {
+    color: white;
+
+    background: #079d91;
+
+    border: 0;
+
+    padding-left: 23px;
+    padding-right: 23px;
+
+    box-shadow: 0 8px 20px rgba(7,157,145,.2);
+}
+
+.save-btn:hover {
+    background: #078c81;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #09262d;
+
+    padding: 35px 0;
+
+    color: white;
+}
+
+.footer-inner {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.footer-inner > div:first-child p {
+    color: #8fa8ac;
+
+    font-size: 10px;
+
+    margin-top: 12px;
+}
+
+.footer-copy {
+    color: #829a9e;
+
+    font-size: 10px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 900px) {
+
+    nav {
+        display: none;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+}
+
+
+@media(max-width: 650px) {
+
+    .page-header {
+        padding: 30px 0;
+    }
+
+    .header-content {
+        align-items: start;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .header-content h1 {
+        font-size: 35px;
+    }
+
+    .form-card {
+        padding: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group.full {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .cancel-btn,
+    .reset-btn,
+    .save-btn {
+        width: 100%;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+
+        align-items: start;
+
+        gap: 25px;
+    }
+
+}
+</style>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </span>
+
+            Medi<span>Care</span>
+        </a>
+
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Patients</a>
+            <a href="#">Doctors</a>
+            <a href="#">Appointments</a>
+            <a href="#">Laboratory</a>
+        </nav>
+
+        <div class="profile">
+            <div class="profile-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <strong>Admin</strong>
+                <small>Administrator</small>
+            </div>
+        </div>
+
+        <button class="menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= PAGE ================= -->
+
+<main>
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+
+                <a href="#">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <a href="#">
+                    Patients
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span>Add Patient</span>
+
+            </div>
+
+            <div class="header-content">
+
+                <div>
+
+                    <p class="page-tag">
+                        PATIENT MANAGEMENT
+                    </p>
+
+                    <h1>
+                        Add New <span>Patient</span>
+                    </h1>
+
+                    <p>
+                        Register a new patient and create their
+                        medical profile.
+                    </p>
+
+                </div>
+
+                <a href="#" class="back-btn">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Back to Patients
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FORM ================= -->
+
+    <section class="patient-section">
+
+        <div class="container">
+
+            <form id="patientForm" class="patient-form">
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="form-card">
+
+                    <div class="form-card-header">
+
+                        <div class="form-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Personal Information
+                            </h2>
+
+                            <p>
+                                Enter patient's basic information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                First Name
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="first_name"
+                                placeholder="Enter first name"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Last Name
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="last_name"
+                                placeholder="Enter last name"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Date of Birth
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                name="dob"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Gender
+                                <span>*</span>
+                            </label>
+
+                            <select name="gender" required>
+
+                                <option value="">
+                                    Select gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Blood Group
+                            </label>
+
+                            <select name="blood_group">
+
+                                <option value="">
+                                    Select blood group
+                                </option>
+
+                                <option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                                <option>O+</option>
+                                <option>O-</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Marital Status
+                            </label>
+
+                            <select name="marital_status">
+
+                                <option value="">
+                                    Select status
+                                </option>
+
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                                <option>Widowed</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTACT -->
+
+                <div class="form-card">
+
+                    <div class="form-card-header">
+
+                        <div class="form-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Contact Information
+                            </h2>
+
+                            <p>
+                                Patient contact and address details
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Phone Number
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="+91 98765 43210"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="patient@email.com">
+
+                        </div>
+
+
+                        <div class="input-group full">
+
+                            <label>
+                                Address
+                                <span>*</span>
+                            </label>
+
+                            <textarea
+                                name="address"
+                                placeholder="Enter complete address"
+                                required></textarea>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                name="city"
+                                placeholder="Enter city">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Pincode
+                            </label>
+
+                            <input
+                                type="text"
+                                name="pincode"
+                                placeholder="Enter pincode">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMERGENCY CONTACT -->
+
+                <div class="form-card">
+
+                    <div class="form-card-header">
+
+                        <div class="form-icon emergency">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Emergency Contact
+                            </h2>
+
+                            <p>
+                                Person to contact in case of emergency
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Contact Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="emergency_name"
+                                placeholder="Enter contact name">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Relationship
+                            </label>
+
+                            <select name="relationship">
+
+                                <option value="">
+                                    Select relationship
+                                </option>
+
+                                <option>Father</option>
+                                <option>Mother</option>
+                                <option>Brother</option>
+                                <option>Sister</option>
+                                <option>Spouse</option>
+                                <option>Friend</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Emergency Phone
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="emergency_phone"
+                                placeholder="+91 98765 43210">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MEDICAL INFORMATION -->
+
+                <div class="form-card">
+
+                    <div class="form-card-header">
+
+                        <div class="form-icon medical">
+                            <i class="fa-solid fa-notes-medical"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Medical Information
+                            </h2>
+
+                            <p>
+                                Additional medical information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group full">
+
+                            <label>
+                                Previous Medical History
+                            </label>
+
+                            <textarea
+                                name="medical_history"
+                                placeholder="Enter previous medical conditions, surgeries, etc."></textarea>
+
+                        </div>
+
+
+                        <div class="input-group full">
+
+                            <label>
+                                Allergies
+                            </label>
+
+                            <textarea
+                                name="allergies"
+                                placeholder="Enter known allergies"></textarea>
+
+                        </div>
+
+
+                        <div class="input-group full">
+
+                            <label>
+                                Current Medications
+                            </label>
+
+                            <textarea
+                                name="medications"
+                                placeholder="Enter current medications"></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INSURANCE -->
+
+                <div class="form-card">
+
+                    <div class="form-card-header">
+
+                        <div class="form-icon insurance">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Insurance Information
+                            </h2>
+
+                            <p>
+                                Patient insurance details
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Insurance Provider
+                            </label>
+
+                            <input
+                                type="text"
+                                name="insurance_provider"
+                                placeholder="Insurance company">
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Policy Number
+                            </label>
+
+                            <input
+                                type="text"
+                                name="policy_number"
+                                placeholder="Policy number">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+                    <a href="#" class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="reset" class="reset-btn">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset
+                    </button>
+
+                    <button type="submit" class="save-btn">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Add Patient
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+
+            <a href="#" class="logo">
+
+                <span class="logo-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </span>
+
+                Medi<span>Care</span>
+
+            </a>
+
+            <p>
+                Smart healthcare management for better
+                patient care.
+            </p>
+
+        </div>
+
+        <div class="footer-copy">
+
+            © 2026 MediCare Hospital. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- GSAP -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+
+// ===============================
+// PAGE HEADER
+// ===============================
+
+gsap.from(".page-header", {
+    y: -25,
+    duration: .7,
+    ease: "power3.out"
+});
+
+
+// ===============================
+// FORM CARDS
+// ===============================
+
+gsap.fromTo(
+    ".form-card",
+
+    {
+        y: 25
+    },
+
+    {
+        y: 0,
+
+        duration: .6,
+
+        stagger: .1,
+
+        ease: "power3.out",
+
+        scrollTrigger: {
+            trigger: ".patient-form",
+            start: "top 85%",
+            once: true
+        }
+    }
+);
+
+
+// ===============================
+// INPUT FOCUS EFFECT
+// ===============================
+
+const inputs = document.querySelectorAll(
+    ".input-group input, .input-group select, .input-group textarea"
+);
+
+inputs.forEach(input => {
+
+    input.addEventListener("focus", () => {
+
+        gsap.to(input, {
+            scale: 1.01,
+            duration: .2
+        });
+
+    });
+
+    input.addEventListener("blur", () => {
+
+        gsap.to(input, {
+            scale: 1,
+            duration: .2
+        });
+
+    });
+
+});
+
+
+// ===============================
+// FORM SUBMIT
+// ===============================
+
+const form = document.querySelector("#patientForm");
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const button = document.querySelector(".save-btn");
+
+    button.innerHTML = `
+        <i class="fa-solid fa-check"></i>
+        Patient Added
+    `;
+
+    gsap.fromTo(
+        button,
+
+        {
+            scale: .95
+        },
+
+        {
+            scale: 1,
+            duration: .3,
+            ease: "back.out(2)"
+        }
+    );
+
+});
+
+
+// ===============================
+// RESET
+// ===============================
+
+const resetBtn = document.querySelector(".reset-btn");
+
+resetBtn.addEventListener("click", () => {
+
+    const button = document.querySelector(".save-btn");
+
+    button.innerHTML = `
+        <i class="fa-solid fa-user-plus"></i>
+        Add Patient
+    `;
+
+});
+</script>
+
+</body>
+</html>
