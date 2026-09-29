@@ -1,0 +1,1983 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add New Patient | MedixCare</title>
+
+
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #5b5cf0;
+    --primary-dark: #4849d9;
+
+    --bg: #f6f7fb;
+    --card: #ffffff;
+
+    --text: #191a2b;
+    --muted: #8c8e9d;
+
+    --border: #e8e9f0;
+
+    --sidebar: #101126;
+}
+
+body {
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page-wrapper {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    background: var(--sidebar);
+
+    color: white;
+
+    padding: 24px 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        0 9px 30px;
+}
+
+
+.brand-logo {
+    width: 41px;
+    height: 41px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cf0,
+            #8b6cff
+        );
+
+    display: grid;
+    place-items: center;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+.brand h2 {
+    font-size: 19px;
+}
+
+.brand h2 span {
+    color: #7476ff;
+}
+
+.brand small {
+    color: #777991;
+
+    font-size: 8px;
+}
+
+
+.nav-title {
+    color: #64667e;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    padding:
+        18px 13px 8px;
+}
+
+
+.nav-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    margin: 3px 0;
+
+    border-radius: 9px;
+
+    color: #9294a7;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    transition: .25s;
+}
+
+
+.nav-link span {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+.nav-link:hover {
+    background:
+        rgba(255,255,255,.06);
+
+    color: white;
+}
+
+
+.nav-link.active {
+    background:
+        linear-gradient(
+            90deg,
+            #5b5cf0,
+            #686af5
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(91,92,240,.25);
+}
+
+
+.sidebar-user {
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    padding-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.user-avatar,
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7779ff,
+            #a174ff
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    font-size: 12px;
+}
+
+
+.sidebar-user strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.sidebar-user small {
+    color: #777991;
+
+    font-size: 8px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 250px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    height: 82px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        15px 35px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+.top-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.back-btn {
+    width: 37px;
+    height: 37px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: .2s;
+}
+
+
+.back-btn:hover {
+    background: #f1f1ff;
+
+    color: var(--primary);
+}
+
+
+.top-left h1 {
+    font-size: 19px;
+}
+
+
+.top-left p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+.top-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.notification {
+    width: 37px;
+    height: 37px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 9px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+.notification i {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: #ff5b6a;
+
+    border-radius: 50%;
+
+    right: 7px;
+    top: 7px;
+}
+
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.profile strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+
+.profile small {
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    padding:
+        30px 35px 60px;
+}
+
+
+.form-container {
+    max-width: 1050px;
+
+    margin: auto;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(30,32,60,.06);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   FORM HEADING
+========================= */
+
+.form-heading {
+    padding:
+        25px 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #f7f7ff,
+            #ffffff
+        );
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.heading-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 13px;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cf0,
+            #8170ff
+        );
+
+    color: white;
+
+    font-size: 21px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(91,92,240,.22);
+}
+
+
+.form-heading h2 {
+    font-size: 17px;
+}
+
+
+.form-heading p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.form-section {
+    padding:
+        28px;
+
+    border-bottom:
+        1px solid #f0f0f4;
+}
+
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 22px;
+}
+
+
+.section-number {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    display: grid;
+    place-items: center;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.section-title h3 {
+    font-size: 13px;
+}
+
+
+.section-title p {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 19px 22px;
+}
+
+
+.field.full {
+    grid-column:
+        1 / -1;
+}
+
+
+.field label {
+    display: block;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+
+    color: #464756;
+}
+
+
+.field label span {
+    color: #f05e6c;
+}
+
+
+.input-box {
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid #e2e3eb;
+
+    border-radius: 9px;
+
+    background: white;
+
+    transition: .25s;
+
+    overflow: hidden;
+}
+
+
+.input-box:focus-within {
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(91,92,240,.09);
+}
+
+
+.input-icon {
+    width: 43px;
+
+    color: #a2a4b1;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    flex-shrink: 0;
+}
+
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    width: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    color: #333444;
+}
+
+
+.input-box input::placeholder,
+.input-box textarea::placeholder {
+    color: #b4b5bf;
+}
+
+
+.input-box select {
+    cursor: pointer;
+}
+
+
+.textarea-box {
+    height: 90px;
+
+    align-items: flex-start;
+
+    padding-top: 12px;
+}
+
+
+.textarea-box textarea {
+    height: 65px;
+
+    resize: vertical;
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-area {
+    border:
+        1.5px dashed #d7d8e5;
+
+    border-radius: 13px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background: #fafaff;
+
+    transition: .25s;
+}
+
+
+.upload-area:hover {
+    border-color:
+        var(--primary);
+
+    background: #f7f7ff;
+}
+
+
+.preview-box {
+    width: 85px;
+    height: 85px;
+
+    border-radius: 13px;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 30px;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+
+.preview-box img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.upload-content h4 {
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.upload-content p {
+    color: #9b9daa;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    margin-bottom: 10px;
+}
+
+
+.upload-btn {
+    display: inline-block;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    padding: 8px 13px;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.upload-btn:hover {
+    background:
+        var(--primary);
+
+    color: white;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.form-actions {
+    padding:
+        22px 28px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    background: #fcfcfe;
+}
+
+
+.cancel-btn,
+.save-btn {
+    border: 0;
+
+    padding:
+        11px 19px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.cancel-btn {
+    background: #f1f1f5;
+
+    color: #666877;
+}
+
+
+.cancel-btn:hover {
+    background: #e5e5eb;
+}
+
+
+.save-btn {
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cf0,
+            #716df7
+        );
+
+    color: white;
+
+    box-shadow:
+        0 7px 18px
+        rgba(91,92,240,.22);
+}
+
+
+.save-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(91,92,240,.30);
+}
+
+
+.save-btn:active {
+    transform:
+        translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+}
+
+
+@media(max-width: 650px) {
+
+    .topbar {
+        padding:
+            14px 18px;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .content {
+        padding: 12px;
+    }
+
+    .form-heading,
+    .form-section {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .upload-area {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .form-actions {
+        padding: 18px;
+
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+}
+</style>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">M</div>
+
+            <div>
+                <h2>Medix<span>Care</span></h2>
+                <small>Hospital Management</small>
+            </div>
+        </div>
+
+        <nav>
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <a href="#" class="nav-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-link active">
+                <span>♙</span>
+                Patients
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>⚕</span>
+                Doctors
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>▣</span>
+                Appointments
+            </a>
+
+            <p class="nav-title">MANAGEMENT</p>
+
+            <a href="#" class="nav-link">
+                <span>🧪</span>
+                Laboratory
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>◉</span>
+                DICOM
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>▤</span>
+                Billing
+            </a>
+
+            <a href="#" class="nav-link">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <p class="nav-title">SYSTEM</p>
+
+            <a href="#" class="nav-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">A</div>
+
+            <div>
+                <strong>Admin User</strong>
+                <small>Administrator</small>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="top-left">
+
+                <button class="back-btn"
+                        onclick="history.back()">
+                    ←
+                </button>
+
+                <div>
+                    <h1>Add New Patient</h1>
+
+                    <p>
+                        Register a new patient in the hospital system
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="top-right">
+
+                <button class="notification">
+                    ♢
+                    <i></i>
+                </button>
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="content">
+
+            <div class="form-container">
+
+                <div class="form-heading">
+
+                    <div class="heading-icon">
+                        ♙
+                    </div>
+
+                    <div>
+                        <h2>Patient Registration</h2>
+
+                        <p>
+                            Enter the patient's information carefully.
+                            All required fields are marked with *
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= FORM ================= -->
+
+                <form method="POST"
+                      enctype="multipart/form-data"
+                      id="patientForm">
+
+                    {% csrf_token %}
+
+
+                    <!-- ================= PERSONAL INFORMATION ================= -->
+
+                    <div class="form-section">
+
+                        <div class="section-title">
+
+                            <div class="section-number">
+                                01
+                            </div>
+
+                            <div>
+                                <h3>Personal Information</h3>
+
+                                <p>
+                                    Basic details of the patient
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <!-- FIRST NAME -->
+
+                            <div class="field">
+
+                                <label>
+                                    First Name
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        Aa
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter first name"
+                                        name="First_name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LAST NAME -->
+
+                            <div class="field">
+
+                                <label>
+                                    Last Name
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        Aa
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter last name"
+                                        name="Last_name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FATHER NAME -->
+
+                            <div class="field">
+
+                                <label>
+                                    Father Name
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        Aa
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter father name"
+                                        name="Father_name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- MIDDLE NAME -->
+
+                            <div class="field">
+
+                                <label>
+                                    Patient Name
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        Aa
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter patient name"
+                                        name="P_m_name"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- DOB -->
+
+                            <div class="field">
+
+                                <label>
+                                    Date of Birth
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        ▣
+                                    </span>
+
+                                    <input
+                                        type="date"
+                                        name="P_date"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- AGE -->
+
+                            <div class="field">
+
+                                <label>
+                                    Age
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        #
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter patient age"
+                                        name="age"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- GENDER -->
+
+                            <div class="field">
+
+                                <label>
+                                    Gender
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        ♙
+                                    </span>
+
+                                    <select
+                                        name="gender"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select Gender
+                                        </option>
+
+                                        <option value="Male">
+                                            Male
+                                        </option>
+
+                                        <option value="Female">
+                                            Female
+                                        </option>
+
+                                        <option value="Other">
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PATIENT ID -->
+
+                            <div class="field">
+
+                                <label>
+                                    Patient ID
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        ID
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter patient ID"
+                                        name="P_id"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= CONTACT ================= -->
+
+                    <div class="form-section">
+
+                        <div class="section-title">
+
+                            <div class="section-number">
+                                02
+                            </div>
+
+                            <div>
+                                <h3>Contact Information</h3>
+
+                                <p>
+                                    Patient contact and address details
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <!-- EMAIL -->
+
+                            <div class="field">
+
+                                <label>
+                                    Email Address
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        @
+                                    </span>
+
+                                    <input
+                                        type="email"
+                                        placeholder="patient@example.com"
+                                        name="email"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div class="field">
+
+                                <label>
+                                    WhatsApp Number
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        ☎
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter WhatsApp number"
+                                        name="phone"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ADDRESS -->
+
+                            <div class="field full">
+
+                                <label>
+                                    Address
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box textarea-box">
+
+                                    <span class="input-icon">
+                                        ⌂
+                                    </span>
+
+                                    <textarea
+                                        placeholder="Enter complete patient address"
+                                        name="address"
+                                        required
+                                    ></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= HOSPITAL INFORMATION ================= -->
+
+                    <div class="form-section">
+
+                        <div class="section-title">
+
+                            <div class="section-number">
+                                03
+                            </div>
+
+                            <div>
+                                <h3>Hospital Information</h3>
+
+                                <p>
+                                    Admission and hospital details
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- BADE -->
+
+                            <div class="field">
+
+                                <label>
+                                    Bed Number
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        B
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter bed number"
+                                        name="P_bade"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- WARD -->
+
+                            <div class="field">
+
+                                <label>
+                                    Ward
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        W
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter patient ward"
+                                        name="P_ward"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ADMISSION -->
+
+                            <div class="field">
+
+                                <label>
+                                    Admission Date
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-box">
+
+                                    <span class="input-icon">
+                                        ▣
+                                    </span>
+
+                                    <input
+                                        type="date"
+                                        name="P_admission"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= PATIENT PHOTO ================= -->
+
+                    <div class="form-section">
+
+                        <div class="section-title">
+
+                            <div class="section-number">
+                                04
+                            </div>
+
+                            <div>
+                                <h3>Patient Photo</h3>
+
+                                <p>
+                                    Upload patient's profile image
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="upload-area"
+                             id="uploadArea">
+
+                            <div class="preview-box"
+                                 id="previewBox">
+
+                                <span>♙</span>
+
+                            </div>
+
+
+                            <div class="upload-content">
+
+                                <h4>
+                                    Upload Patient Image
+                                </h4>
+
+                                <p>
+                                    PNG, JPG or JPEG
+                                    <br>
+                                    Maximum recommended size: 5 MB
+                                </p>
+
+                                <label
+                                    for="patientImage"
+                                    class="upload-btn">
+
+                                    Choose Image
+
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="patientImage"
+                                    name="image"
+                                    accept="image/*"
+                                    required
+                                    hidden
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= ACTIONS ================= -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="reset"
+                            class="cancel-btn">
+
+                            <span>×</span>
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="save-btn">
+
+                            <span>✓</span>
+                            Save Patient
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const imageInput =
+        document.getElementById("patientImage");
+
+    const previewBox =
+        document.getElementById("previewBox");
+
+
+    /* =========================
+       IMAGE PREVIEW
+    ========================= */
+
+    imageInput.addEventListener(
+        "change",
+        function () {
+
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            if (!file.type.startsWith("image/")) {
+
+                alert("Please select a valid image.");
+
+                this.value = "";
+
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    previewBox.innerHTML = `
+                        <img
+                            src="${event.target.result}"
+                            alt="Patient Preview"
+                        >
+                    `;
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+    /* =========================
+       FORM SUBMIT LOADING
+    ========================= */
+
+    const form =
+        document.getElementById("patientForm");
+
+    const saveButton =
+        form.querySelector(".save-btn");
+
+
+    form.addEventListener(
+        "submit",
+        function () {
+
+            saveButton.innerHTML = `
+                <span class="loader"></span>
+                Saving...
+            `;
+
+            saveButton.style.pointerEvents =
+                "none";
+
+        }
+    );
+
+
+    /* =========================
+       INPUT ANIMATION
+    ========================= */
+
+    const inputs =
+        document.querySelectorAll(
+            "input, select, textarea"
+        );
+
+
+    inputs.forEach(input => {
+
+        input.addEventListener(
+            "input",
+            function () {
+
+                if (this.value.trim() !== "") {
+
+                    this.closest(".input-box")
+                        ?.classList.add("filled");
+
+                } else {
+
+                    this.closest(".input-box")
+                        ?.classList.remove("filled");
+
+                }
+
+            }
+        );
+
+    });
+
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container row  mt-4">-->
+
+<!--<div class="card shadow table-box border-radius ">-->
+
+<!--<div class="card-header text-center  bg-success text-white">-->
+
+<!--<h3>Add New Patient</h3>-->
+
+<!--</div>-->
+
+<!--<div class="card-body ">-->
+
+<!--<form method="POST" enctype="multipart/form-data">-->
+
+<!--{% csrf_token %}-->
+<!--  <table  style="margin-left:80px">-->
+<!--      <tr>-->
+<!--          <td>-->
+<!--              <label >first_name</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Middel Name" name="First_name" required style=" width:350px; padding-left:10px;">-->
+<!--</td>-->
+<!--          </tr>-->
+<!--       <tr>-->
+<!--          <td style="margin-left:5px;" class="mt-5">-->
+<!--              <label class="mt-2">last_name </label><br/>-->
+<!--<input type="text" placeholder="Enter last_name" name="Last_name" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+<!--<td>-->
+<!--              <label class="mt-2" style="margin-left:80px">father_name</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient" name="Father_name" required style="margin-left:80px;width:350px; padding-left:10px;">-->
+<!--</td>-->
+
+
+
+<!--          </tr>-->
+<!--       <tr>-->
+<!--          <td>-->
+<!--              <label class="mt-2">dob</label><br/>-->
+<!--<input type="date" placeholder="Enter Date" name="P_date" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+
+<!--          <td>-->
+<!--              <label class="mt-2" style="margin-left:80px">Address:</label><br/>-->
+<!--    <input type="text" placeholder="Enter Address" name="address" required  style="margin-left:80px;width:350px; padding-left:10px;">-->
+<!--</td>-->
+<!--          </tr>-->
+<!--       <tr>-->
+<!--          <td>-->
+<!--              <label class="mt-2" >Email:</label><br/>-->
+<!--    <input type="email" placeholder="Enter patient Email_id" name="email" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+
+<!--          <td>-->
+<!--              <label class="mt-2" style="margin-left:80px">Bade No:</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Bade_no..." name="P_bade" required style="margin-left:80px;width:350px; padding-left:10px;">-->
+<!--    </td>-->
+<!--          </tr>-->
+<!--  <tr>-->
+<!--          <td>-->
+<!--              <label class="mt-2">Ward :</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Ward" name="P_ward" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+
+<!--          <td>-->
+<!--              <label class="mt-2" style="margin-left:80px">admission_date:</label><br/>-->
+<!--    <input type="date" placeholder="Enter patient Bade_no..." name="P_admission" required style="margin-left:80px;width:350px; padding-left:10px;">-->
+<!--    </td>-->
+<!--          </tr>-->
+<!--       <tr >-->
+<!--          <td>-->
+<!--              <label class="mt-2">Patient_Iamg:</label><br/>-->
+<!--<input type="file" placeholder="Enter patient_iamges" name="image" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+<!--            <td><label class="mt-2">Patient_Id</label><br/>-->
+<!--<input type="text" placeholder="Enter patient_iamges" name="P_id" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+
+
+<!--          </tr>-->
+<!--       <tr>-->
+<!--          <td>-->
+<!--              <select class="mt-2 w-20 form-select" name="gender" required style="width:350px;" >-->
+<!--                  <option name="gender">Gender</option>-->
+
+<!--                   <option value="">Select Gender</option>-->
+<!--                    <option value="Male">Male</option>-->
+<!--                    <option value="Female">Female</option>-->
+<!--                    <option value="Other">Other</option>-->
+
+<!--                  </select>-->
+
+<!--          </td>-->
+
+
+<!--          <td>-->
+<!--              <label style="margin-left:80px">Name:</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Middel Name" name="P_m_name" required style="margin-left:80px ;width:350px; padding-left:10px;">-->
+<!--    </td>-->
+<!--          </tr>-->
+
+<!--       <tr>-->
+<!--          <td >-->
+<!--              <label>Age:</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Name" name="age" required style="width:350px; padding-left:10px;">-->
+<!--          </td>-->
+
+
+<!--          <td>-->
+<!--              <label style="margin-left:80px">Whats'App number</label><br/>-->
+<!--    <input type="text" placeholder="Enter patient Middel Name" name="phone" required style="margin-left:80px ;width:350px; padding-left:10px;">-->
+<!--    </td>-->
+<!--          </tr>-->
+
+
+<!--</table>-->
+<!--    <div class="d-flex gap-2 mt-3 " style="margin-left:90px">-->
+<!--    <button type="submit" class="btn btn-success">-->
+<!--        <i class="fas fa-save"></i> Save-->
+<!--    </button>-->
+
+<!--    <button type="reset" class="btn btn-danger cancel">-->
+<!--        <i class="fas fa-times"></i> Cancel-->
+<!--    </button>-->
+<!--</div>-->
+<!--</form>-->
+
+<!--</div>-->
+
+<!--</div>-->
+
+<!--</div>-->
+

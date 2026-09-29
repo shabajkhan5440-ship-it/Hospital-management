@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Patient - MediLab</title>
+
+    <link rel="stylesheet"
+          href="{% static 'laboratory/style.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-flask"></i>
+            </div>
+
+            <div>
+                <h2>MediLab</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="{% url 'lab_tests' %}">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="{% url 'lab_tests' %}">
+                <i class="fa-solid fa-flask"></i>
+                Lab Tests
+            </a>
+
+            <a href="{% url 'patients' %}" class="active">
+                <i class="fa-solid fa-users"></i>
+                Patients
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-file-medical"></i>
+                Test Reports
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-calendar-days"></i>
+                Appointments
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user-doctor"></i>
+                Doctors
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-receipt"></i>
+                Billing
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="global-search">
+
+                <input
+                    type="text"
+                    placeholder="Search..."
+                >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </div>
+
+            <div class="top-actions">
+
+                <div class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>5</span>
+                </div>
+
+                <div class="avatar">
+                    A
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>Add Patient</h1>
+
+                    <div class="breadcrumb">
+
+                        <a href="{% url 'patients' %}">
+                            Patients
+                        </a>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <strong>Add Patient</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-card-header">
+
+                    <div class="large-form-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Patient Information</h2>
+
+                        <p>
+                            Enter patient's basic information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Patient Name *
+                            </label>
+
+                            {{ form.name }}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Age *
+                            </label>
+
+                            {{ form.age }}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Gender *
+                            </label>
+
+                            {{ form.gender }}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Phone Number *
+                            </label>
+
+                            {{ form.phone }}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email
+                            </label>
+
+                            {{ form.email }}
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Address
+                            </label>
+
+                            {{ form.address }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-footer">
+
+                        <a
+                            href="{% url 'patients' %}"
+                            class="cancel-btn">
+
+                            Cancel
+
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="save-btn">
+
+                            <i class="fa-solid fa-check"></i>
+
+                            Save Patient
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

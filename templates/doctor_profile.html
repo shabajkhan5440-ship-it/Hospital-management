@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Our Doctors</title>
+
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --primary: #5758ee;
+
+    --primary-dark: #4142d2;
+
+    --dark: #15172b;
+
+    --text: #25273a;
+
+    --muted: #8c8fa3;
+
+    --border: #e9eaf1;
+
+    --bg: #f7f8fc;
+
+    --green: #22b982;
+
+}
+
+
+body {
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+}
+
+
+/* =====================================
+   PAGE
+===================================== */
+
+.doctor-page {
+
+    min-height: 100vh;
+
+}
+
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+
+    min-height: 360px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #12142a,
+            #22255a
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        70px 8%;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 650px;
+
+}
+
+
+.hero-tag {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px 13px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color: #bfc2ff;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.hero-tag span {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #6dffbf;
+
+    box-shadow:
+        0 0 12px
+        #6dffbf;
+
+}
+
+
+.hero h1 {
+
+    color: white;
+
+    font-size:
+        clamp(40px, 6vw, 68px);
+
+    line-height: 1.05;
+
+    margin-top: 18px;
+
+    letter-spacing: -2px;
+
+}
+
+
+.hero h1 strong {
+
+    color: #7475ff;
+
+}
+
+
+.hero p {
+
+    color: #a7aac3;
+
+    max-width: 520px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-top: 18px;
+
+}
+
+
+/* =====================================
+   DECORATION
+===================================== */
+
+.hero-decoration {
+
+    position: absolute;
+
+    right: 7%;
+
+    top: 0;
+
+    width: 420px;
+
+    height: 100%;
+
+}
+
+
+.circle {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+.circle-one {
+
+    width: 350px;
+
+    height: 350px;
+
+    right: 0;
+
+    top: 5px;
+
+}
+
+
+.circle-two {
+
+    width: 230px;
+
+    height: 230px;
+
+    right: 60px;
+
+    top: 65px;
+
+}
+
+
+.hero-decoration > span {
+
+    position: absolute;
+
+    color: #5e60ed;
+
+    font-size: 30px;
+
+}
+
+
+.hero-decoration > span:nth-of-type(1) {
+
+    right: 80px;
+
+    top: 70px;
+
+}
+
+
+.hero-decoration > span:nth-of-type(2) {
+
+    right: 330px;
+
+    bottom: 50px;
+
+}
+
+
+.hero-decoration > span:nth-of-type(3) {
+
+    right: 30px;
+
+    bottom: 100px;
+
+}
+
+
+/* =====================================
+   SECTION
+===================================== */
+
+.doctors-section {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding:
+        70px 25px;
+
+}
+
+
+.section-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 35px;
+
+}
+
+
+.small-title {
+
+    color: var(--primary);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.section-top h2 {
+
+    font-size: 28px;
+
+    max-width: 500px;
+
+    line-height: 1.25;
+
+}
+
+
+.section-top h2 span {
+
+    color: #a2a5b5;
+
+    font-weight: 400;
+
+}
+
+
+.doctor-count {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        10px 15px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 10px;
+
+}
+
+
+.doctor-count strong {
+
+    color: var(--primary);
+
+    font-size: 20px;
+
+}
+
+
+.doctor-count span {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+}
+
+
+/* =====================================
+   GRID
+===================================== */
+
+.doctor-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+/* =====================================
+   CARD
+===================================== */
+
+.doctor-card {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 35px
+        rgba(25,29,60,.055);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+
+}
+
+
+.doctor-card:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 25px 60px
+        rgba(25,29,60,.13);
+
+}
+
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.doctor-image {
+
+    height: 330px;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.doctor-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .7s ease;
+
+}
+
+
+.doctor-card:hover
+.doctor-image img {
+
+    transform:
+        scale(1.07);
+
+}
+
+
+.image-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 55%,
+            rgba(10,12,30,.38)
+        );
+
+}
+
+
+/* =====================================
+   AVAILABILITY
+===================================== */
+
+.availability {
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 15px;
+
+    left: 15px;
+
+    padding:
+        8px 11px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    backdrop-filter:
+        blur(12px);
+
+    border-radius: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #1da976;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+}
+
+
+.pulse {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #20bd80;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(32,189,128,.15);
+
+}
+
+
+/* =====================================
+   NUMBER
+===================================== */
+
+.card-number {
+
+    position: absolute;
+
+    z-index: 3;
+
+    right: 17px;
+
+    top: 16px;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    opacity: .8;
+
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.doctor-content {
+
+    padding: 23px;
+
+}
+
+
+.speciality {
+
+    display: inline-block;
+
+    color: var(--primary);
+
+    background: #eeeeff;
+
+    padding:
+        6px 9px;
+
+    border-radius: 6px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+
+.doctor-content h3 {
+
+    font-size: 21px;
+
+    margin-top: 12px;
+
+}
+
+
+.doctor-description {
+
+    color: #9699a9;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+
+    margin-top: 8px;
+
+}
+
+
+/* =====================================
+   STATS
+===================================== */
+
+.stats-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 18px;
+
+}
+
+
+.stat {
+
+    padding:
+        10px;
+
+    background: #f8f8fc;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.stat-icon {
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 7px;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 11px;
+
+}
+
+
+.stat span {
+
+    display: block;
+
+    color: #a1a4b2;
+
+    font-size: 7px;
+
+}
+
+
+.stat strong {
+
+    display: block;
+
+    color: #3d4051;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.doctor-footer {
+
+    margin-top: 20px;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid #f0f0f4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.rating {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.stars {
+
+    color: #f4b63d;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.rating span {
+
+    color: #8e91a0;
+
+    font-size: 9px;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.appointment-btn {
+
+    text-decoration: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        10px 13px;
+
+    border-radius: 8px;
+
+    background:
+        var(--primary);
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px
+        rgba(87,88,238,.22);
+
+    transition: .3s;
+
+}
+
+
+.appointment-btn b {
+
+    font-size: 15px;
+
+    transition: .3s;
+
+}
+
+
+.appointment-btn:hover {
+
+    background:
+        var(--primary-dark);
+
+    box-shadow:
+        0 10px 25px
+        rgba(87,88,238,.35);
+
+}
+
+
+.appointment-btn:hover b {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* =====================================
+   EMPTY
+===================================== */
+
+.empty-doctors {
+
+    grid-column:
+        1 / -1;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+}
+
+
+.empty-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin:
+        0 auto 15px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 18px;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    font-size: 28px;
+
+}
+
+
+.empty-doctors h3 {
+
+    font-size: 18px;
+
+}
+
+
+.empty-doctors p {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 7px;
+
+}
+
+
+/* =====================================
+   BOTTOM BANNER
+===================================== */
+
+.bottom-banner {
+
+    max-width: 1200px;
+
+    margin:
+        0 auto 70px;
+
+    padding:
+        35px 40px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #5557eb,
+            #7774f6
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+        0 20px 40px
+        rgba(87,88,238,.22);
+
+}
+
+
+.bottom-banner span {
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    opacity: .7;
+
+}
+
+
+.bottom-banner h2 {
+
+    margin-top: 8px;
+
+    font-size: 24px;
+
+}
+
+
+.bottom-banner h2 strong {
+
+    color: #dcdcff;
+
+}
+
+
+.bottom-banner a {
+
+    background: white;
+
+    color: var(--primary);
+
+    text-decoration: none;
+
+    padding:
+        13px 17px;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+
+.bottom-banner a span {
+
+    font-size: 17px;
+
+    opacity: 1;
+
+    letter-spacing: 0;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width: 1000px) {
+
+    .doctor-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .hero-decoration {
+
+        opacity: .4;
+
+    }
+
+}
+
+
+@media(max-width: 650px) {
+
+    .hero {
+
+        padding:
+            55px 22px;
+
+        min-height: 330px;
+
+    }
+
+    .hero-decoration {
+
+        display: none;
+
+    }
+
+    .doctors-section {
+
+        padding:
+            50px 17px;
+
+    }
+
+    .section-top {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+
+    }
+
+    .doctor-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .doctor-image {
+
+        height: 350px;
+
+    }
+
+    .bottom-banner {
+
+        margin:
+            0 17px 40px;
+
+        padding: 28px 22px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+    }
+
+    .bottom-banner a {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="doctor-page">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                <span></span>
+                OUR MEDICAL EXPERTS
+            </div>
+
+            <h1>
+                Meet Our
+                <strong>Specialists</strong>
+            </h1>
+
+            <p>
+                Experienced doctors, advanced care and
+                a commitment to your health.
+            </p>
+
+        </div>
+
+
+        <div class="hero-decoration">
+
+            <div class="circle circle-one"></div>
+            <div class="circle circle-two"></div>
+
+            <span>+</span>
+            <span>+</span>
+            <span>+</span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DOCTOR SECTION ================= -->
+
+    <section class="doctors-section">
+
+
+        <div class="section-top">
+
+            <div>
+
+                <p class="small-title">
+                    OUR TEAM
+                </p>
+
+                <h2>
+                    Healthcare professionals
+                    <span>you can trust.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="doctor-count">
+
+                <strong>
+                    {{ doctors|length }}
+                </strong>
+
+                <span>
+                    Doctors Available
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= GRID ================= -->
+
+        <div class="doctor-grid">
+
+
+            {% for i in doctor_profile %}
+
+
+            <!-- DOCTOR CARD -->
+
+            <article class="doctor-card">
+
+
+                <!-- IMAGE -->
+
+                <div class="doctor-image">
+
+                    <img
+                        src="{{ doctor.image.url }}"
+                        alt="{{ doctor.name }}"
+                    >
+
+
+                    <!-- Availability -->
+
+                    <div class="availability">
+
+                        <span class="pulse"></span>
+
+                        Available Today
+
+                    </div>
+
+
+                    <!-- Number -->
+
+                    <div class="card-number">
+
+                        {% if forloop.counter < 10 %}
+
+                            0{{ forloop.counter }}
+
+                        {% else %}
+
+                            {{ forloop.counter }}
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Image Overlay -->
+
+                    <div class="image-overlay"></div>
+
+                </div>
+
+
+
+                <!-- CONTENT -->
+
+                <div class="doctor-content">
+
+
+                    <div class="speciality">
+
+                        {{ doctor.specialization }}
+
+                    </div>
+
+
+                    <h3>
+
+                        Dr. {{ i.name}}
+
+                    </h3>
+
+
+                    <p class="doctor-description">
+
+                        Providing professional healthcare
+                        with personalized attention and
+                        modern treatment approaches.
+
+                    </p>
+
+
+
+                    <!-- STATS -->
+
+                    <div class="stats-row">
+
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+                                ✦
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Experience
+                                </span>
+
+                                <strong>
+                                    {{ doctor.experience }} Years
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+                                ♙
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Patients
+                                </span>
+
+                                <strong>
+                                    {{ doctor.patients }}+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- FOOTER -->
+
+                    <div class="doctor-footer">
+
+
+                        <div class="rating">
+
+                            <div class="stars">
+                                ★★★★★
+                            </div>
+
+                            <span>
+                                4.9
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="/appointment/"
+                            class="appointment-btn"
+                        >
+
+                            <span>
+                                Book Now
+                            </span>
+
+                            <b>
+                                →
+                            </b>
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+            {% empty %}
+
+
+            <!-- NO DOCTOR -->
+
+            <div class="empty-doctors">
+
+                <div class="empty-icon">
+                    ♙
+                </div>
+
+                <h3>
+                    No Doctors Available
+                </h3>
+
+                <p>
+                    Doctor information will appear here
+                    when available.
+                </p>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= BOTTOM ================= -->
+
+    <section class="bottom-banner">
+
+        <div>
+
+            <span>
+                NEED MEDICAL ASSISTANCE?
+            </span>
+
+            <h2>
+                Your health deserves
+                <strong>the best care.</strong>
+            </h2>
+
+        </div>
+
+
+        <a href="/appointment/">
+
+            Schedule Appointment
+
+            <span>→</span>
+
+        </a>
+
+    </section>
+
+
+</div>
+
+
+
+<script src="doctor.js"></script>
+
+</body>
+
+</html>

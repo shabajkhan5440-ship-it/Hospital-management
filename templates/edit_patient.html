@@ -1,0 +1,555 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .edit-page {
+        min-height: 90vh;
+        padding: 40px 20px;
+        background: #f4f8fc;
+    }
+
+    .edit-container {
+        max-width: 1050px;
+        margin: auto;
+    }
+
+    /* HEADER */
+
+    .edit-header {
+        background: linear-gradient(135deg, #075985, #0ea5e9);
+        color: white;
+        padding: 28px 32px;
+        border-radius: 24px 24px 0 0;
+
+        display: flex;
+        align-items: center;
+        gap: 18px;
+
+        box-shadow: 0 15px 35px rgba(14, 165, 233, .18);
+    }
+
+    .header-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 17px;
+
+        background: rgba(255,255,255,.15);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 25px;
+    }
+
+    .edit-header h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .edit-header p {
+        margin: 5px 0 0;
+        font-size: 12px;
+        opacity: .8;
+    }
+
+
+    /* FORM CARD */
+
+    .edit-card {
+        background: white;
+        padding: 35px;
+        border-radius: 0 0 24px 24px;
+
+        box-shadow: 0 15px 40px rgba(15, 23, 42, .08);
+    }
+
+
+    /* SECTION */
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+
+        border-bottom: 1px solid #edf1f5;
+    }
+
+    .section-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        background: #e0f2fe;
+        color: #0284c7;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-title h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #172033;
+    }
+
+    .section-title span {
+        display: block;
+        margin-top: 3px;
+        font-size: 10px;
+        color: #9aa3af;
+    }
+
+
+    /* FORM GRID */
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+
+    /* FORM GROUP */
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #536071;
+        margin-bottom: 8px;
+    }
+
+    .form-control-custom {
+        width: 100%;
+        height: 46px;
+
+        border: 1px solid #dce4ec;
+        border-radius: 11px;
+
+        background: #fafcff;
+
+        padding: 0 14px;
+
+        outline: none;
+
+        font-size: 12px;
+        color: #263244;
+
+        transition: .25s;
+    }
+
+    .form-control-custom:focus {
+        background: white;
+        border-color: #0ea5e9;
+
+        box-shadow:
+            0 0 0 4px rgba(14,165,233,.08);
+    }
+
+
+    /* TEXTAREA */
+
+    .address-box {
+        margin-top: 20px;
+    }
+
+    .address-box textarea {
+        width: 100%;
+        min-height: 110px;
+
+        resize: vertical;
+
+        border: 1px solid #dce4ec;
+        border-radius: 11px;
+
+        background: #fafcff;
+
+        padding: 14px;
+
+        outline: none;
+
+        font-family: inherit;
+        font-size: 12px;
+
+        transition: .25s;
+    }
+
+    .address-box textarea:focus {
+        background: white;
+        border-color: #0ea5e9;
+
+        box-shadow:
+            0 0 0 4px rgba(14,165,233,.08);
+    }
+
+
+    /* BUTTON AREA */
+
+    .button-area {
+        margin-top: 30px;
+
+        padding-top: 22px;
+
+        border-top: 1px solid #edf1f5;
+
+        display: flex;
+        gap: 12px;
+    }
+
+    .update-btn,
+    .cancel-btn {
+        height: 46px;
+
+        border-radius: 11px;
+
+        padding: 0 25px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        font-size: 11px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: .25s;
+    }
+
+
+    /* UPDATE */
+
+    .update-btn {
+        border: none;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0284c7,
+                #0369a1
+            );
+
+        color: white;
+
+        flex: 1;
+    }
+
+    .update-btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 25px rgba(3,105,161,.22);
+    }
+
+
+    /* CANCEL */
+
+    .cancel-btn {
+        background: #f1f5f9;
+        color: #475569;
+
+        min-width: 130px;
+    }
+
+    .cancel-btn:hover {
+        background: #e2e8f0;
+    }
+
+
+    /* RESPONSIVE */
+
+    @media(max-width: 700px) {
+
+        .edit-page {
+            padding: 20px 12px;
+        }
+
+        .edit-header {
+            padding: 22px;
+        }
+
+        .edit-header h2 {
+            font-size: 20px;
+        }
+
+        .edit-card {
+            padding: 22px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .button-area {
+            flex-direction: column;
+        }
+
+        .cancel-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<div class="edit-page">
+
+    <div class="edit-container">
+
+
+        <!-- HEADER -->
+
+        <div class="edit-header">
+
+            <div class="header-icon">
+                ✎
+            </div>
+
+            <div>
+
+                <h2>
+                    Edit Patient
+                </h2>
+
+                <p>
+                    Update and manage patient information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CARD -->
+
+        <div class="edit-card">
+
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <h3>
+                        Patient Details
+                    </h3>
+
+                    <span>
+                        Modify the patient's information below
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Patient Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control-custom"
+                            value="{{ patient.name }}"
+                        >
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            name="age"
+                            class="form-control-custom"
+                            value="{{ patient.age }}"
+                        >
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Gender
+                        </label>
+
+                        <select
+                            name="gender"
+                            class="form-control-custom"
+                        >
+
+                            <!--<option {% if patient.gender == "Male" %}selected{% endif %}>Male</option>-->
+
+                            <!--<option {% if patient.gender == "Female" %}selected{% endif %}>Female</option>-->
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control-custom"
+                            value="{{ patient.phone }}"
+                        >
+
+                    </div>
+
+
+                    <!-- DOCTOR -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Doctor
+                        </label>
+
+                        <input
+                            type="text"
+                            name="doctor"
+                            class="form-control-custom"
+                            value="{{ patient.doctor }}"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Image
+                        </label>
+
+                        <input
+                            type="text"
+                            name="image"
+                            class="form-control-custom"
+                            value="{{ patient.image }}"
+                        >
+
+                    </div>
+
+
+                    <!-- DISEASE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Disease
+                        </label>
+
+                        <input
+                            type="text"
+                            name="disease"
+                            class="form-control-custom"
+                            value="{{ patient.disease }}"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="address-box">
+
+                    <div class="form-group">
+
+                        <label>
+                            Address
+                        </label>
+
+                        <textarea
+                            name="address"
+                        >{{ patient.address }}</textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-area">
+
+
+                    <a
+                        href="{% url 'patient_list' %}"
+                        class="cancel-btn"
+                    >
+                        ← Cancel
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="update-btn"
+                    >
+                        ✓ &nbsp; Update Patient
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,1140 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+Help Center
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+.help-page {
+    min-height: 100vh;
+    background: #f5f9fc;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #172b34;
+}
+
+
+/* ================= HERO ================= */
+
+.help-hero {
+    position: relative;
+    overflow: hidden;
+
+    padding: 75px 20px 110px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #063b4a,
+            #087f8c
+        );
+
+    color: white;
+}
+
+.help-badge {
+    display: inline-block;
+
+    padding: 8px 17px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.12);
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+}
+
+.help-hero h1 {
+    margin: 0;
+
+    font-size: clamp(38px, 6vw, 58px);
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+.help-hero h1 span {
+    color: #8be9e4;
+}
+
+.help-hero p {
+    max-width: 620px;
+
+    margin: 18px auto 0;
+
+    color: rgba(255,255,255,.78);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* ================= DECORATION ================= */
+
+.help-circle-one {
+    position: absolute;
+
+    width: 270px;
+    height: 270px;
+
+    border: 55px solid rgba(255,255,255,.04);
+
+    border-radius: 50%;
+
+    left: -120px;
+
+    top: 30px;
+}
+
+.help-circle-two {
+    position: absolute;
+
+    width: 340px;
+    height: 340px;
+
+    border: 65px solid rgba(255,255,255,.04);
+
+    border-radius: 50%;
+
+    right: -150px;
+
+    bottom: -190px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.help-search {
+    max-width: 720px;
+
+    margin: -45px auto 0;
+
+    position: relative;
+
+    z-index: 5;
+
+    background: white;
+
+    padding: 8px;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-shadow:
+        0 15px 40px rgba(15,23,42,.12);
+}
+
+.search-icon {
+    width: 50px;
+
+    text-align: center;
+
+    color: #087f8c;
+
+    font-size: 20px;
+}
+
+#helpSearch {
+    flex: 1;
+
+    height: 48px;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #334155;
+}
+
+#helpSearch::placeholder {
+    color: #a1aab3;
+}
+
+
+/* ================= CONTAINER ================= */
+
+.help-container {
+    max-width: 1100px;
+
+    margin: 70px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ================= CATEGORY ================= */
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.section-title small {
+    color: #087f8c;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+}
+
+.section-title h2 {
+    margin: 9px 0;
+
+    font-size: 30px;
+}
+
+.section-title p {
+    color: #89949d;
+
+    font-size: 12px;
+}
+
+
+.categories {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 75px;
+}
+
+
+.category {
+
+    background: white;
+
+    border: 1px solid #e7edf1;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: .3s;
+
+    cursor: pointer;
+}
+
+.category:hover {
+
+    transform: translateY(-6px);
+
+    border-color: #acdcd8;
+
+    box-shadow:
+        0 15px 35px rgba(8,127,140,.08);
+}
+
+
+.category-icon {
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    background: #e5f7f5;
+
+    color: #087f8c;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    margin-bottom: 17px;
+}
+
+
+.category h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+}
+
+.category p {
+
+    margin: 0;
+
+    color: #89949d;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* ================= FAQ ================= */
+
+.faq-section {
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+
+.faq-item {
+
+    background: white;
+
+    border: 1px solid #e6edf0;
+
+    border-radius: 15px;
+
+    margin-bottom: 13px;
+
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+
+.faq-item:hover {
+
+    border-color: #b6dedb;
+}
+
+
+.faq-question {
+
+    width: 100%;
+
+    border: none;
+
+    background: white;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #263842;
+}
+
+
+.faq-arrow {
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #eef7f7;
+
+    color: #087f8c;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    transition: .3s;
+}
+
+
+.faq-answer {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition:
+        max-height .4s ease;
+}
+
+
+.faq-answer p {
+
+    margin: 0;
+
+    padding:
+        0 25px 22px;
+
+    color: #7d8992;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+}
+
+
+.faq-item.active .faq-answer {
+
+    max-height: 200px;
+}
+
+
+.faq-item.active .faq-arrow {
+
+    transform: rotate(180deg);
+
+    background: #087f8c;
+
+    color: white;
+}
+
+
+/* ================= SUPPORT ================= */
+
+.support {
+
+    margin-top: 80px;
+
+    padding: 45px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #063b4a,
+            #087f8c
+        );
+
+    color: white;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.support h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 27px;
+}
+
+
+.support p {
+
+    margin: 0;
+
+    color: rgba(255,255,255,.72);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+.support-buttons {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.support-buttons a {
+
+    text-decoration: none;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.contact-btn {
+
+    background: white;
+
+    color: #087f8c;
+}
+
+
+.appointment-btn {
+
+    background: rgba(255,255,255,.12);
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    color: white;
+}
+
+
+/* ================= NO RESULT ================= */
+
+.no-result {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #89949d;
+
+    font-size: 12px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    .categories {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .support {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width: 550px) {
+
+    .help-hero {
+
+        padding: 60px 20px 95px;
+    }
+
+    .categories {
+
+        grid-template-columns: 1fr;
+    }
+
+    .support {
+
+        padding: 30px 22px;
+    }
+
+    .support-buttons {
+
+        flex-direction: column;
+    }
+
+    .support-buttons a {
+
+        text-align: center;
+    }
+
+    .faq-question {
+
+        padding: 17px;
+    }
+
+}
+
+</style>
+
+
+<div class="help-page">
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="help-hero">
+
+        <span class="help-badge">
+            HOSPITAL SUPPORT
+        </span>
+
+        <h1>
+            How can we
+            <span>help?</span>
+        </h1>
+
+        <p>
+            Find answers, guides and useful information
+            about patients, doctors, appointments,
+            billing and hospital services.
+        </p>
+
+
+        <div class="help-circle-one"></div>
+
+        <div class="help-circle-two"></div>
+
+    </section>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="help-search">
+
+        <div class="search-icon">
+            🔍
+        </div>
+
+        <input
+            type="text"
+            id="helpSearch"
+            placeholder="Search for help..."
+        >
+
+    </div>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="help-container">
+
+
+        <!-- ================= CATEGORIES ================= -->
+
+        <div class="section-title">
+
+            <small>
+                HELP CENTER
+            </small>
+
+            <h2>
+                What do you need help with?
+            </h2>
+
+            <p>
+                Select a category to quickly find what
+                you're looking for.
+            </p>
+
+        </div>
+
+
+        <div class="categories">
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Patient Management
+                </h3>
+
+                <p>
+                    Add, edit, search and manage
+                    patient information.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    👨‍⚕️
+                </div>
+
+                <h3>
+                    Doctors
+                </h3>
+
+                <p>
+                    Find doctors, view profiles and
+                    manage doctor information.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    📅
+                </div>
+
+                <h3>
+                    Appointments
+                </h3>
+
+                <p>
+                    Book, manage and check
+                    appointment information.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Billing
+                </h3>
+
+                <p>
+                    Get help with invoices,
+                    payments and billing records.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    🏥
+                </div>
+
+                <h3>
+                    Hospital Services
+                </h3>
+
+                <p>
+                    Learn about departments,
+                    facilities and hospital services.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Account & System
+                </h3>
+
+                <p>
+                    Get help with login, account and
+                    system-related problems.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= FAQ ================= -->
+
+        <div class="section-title">
+
+            <small>
+                COMMON QUESTIONS
+            </small>
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+            <p>
+                Quick answers to common hospital system questions.
+            </p>
+
+        </div>
+
+
+        <div class="faq-section">
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    How can I add a new patient?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Open the Add Patient section from the
+                        hospital dashboard. Enter the required
+                        patient information and click Save Patient.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    How can I edit patient information?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Open Patient List, find the patient and
+                        click the Edit option. Update the required
+                        information and save the changes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    How can I book an appointment?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Open the Appointment page, enter the
+                        patient details, select a doctor, choose
+                        the appointment date and time, then click
+                        Book Appointment.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    Can I search for a patient?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Go to Patient List and use the search
+                        field to find patients by the information
+                        available in your system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    How can I view doctor information?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Open the Doctor section to view doctor
+                        profiles, specialization, qualification,
+                        experience and contact information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+
+                    What should I do if I have a system problem?
+
+                    <span class="faq-arrow">
+                        ↓
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Contact the hospital system administrator
+                        or support team and provide details about
+                        the problem you're experiencing.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="no-result"
+                id="noResult"
+            >
+                No matching help article found.
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= SUPPORT ================= -->
+
+        <div class="support">
+
+            <div>
+
+                <h2>
+                    Still need help?
+                </h2>
+
+                <p>
+                    Can't find what you're looking for?
+                    Contact our support team or book an
+                    appointment with a doctor.
+                </p>
+
+            </div>
+
+
+            <div class="support-buttons">
+
+                <a
+                    href="/contact/"
+                    class="contact-btn"
+                >
+                    Contact Support
+                </a>
+
+
+                <a
+                    href="/appointment/"
+                    class="appointment-btn"
+                >
+                    Book Appointment
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* ================= FAQ ================= */
+
+const faqQuestions =
+    document.querySelectorAll(".faq-question");
+
+
+faqQuestions.forEach(function(question) {
+
+    question.addEventListener(
+        "click",
+        function() {
+
+            const item =
+                question.parentElement;
+
+
+            document
+                .querySelectorAll(".faq-item")
+                .forEach(function(otherItem) {
+
+                    if (otherItem !== item) {
+
+                        otherItem
+                            .classList
+                            .remove("active");
+
+                    }
+
+                });
+
+
+            item
+                .classList
+                .toggle("active");
+
+        }
+    );
+
+});
+
+
+
+/* ================= SEARCH ================= */
+
+const search =
+    document.getElementById("helpSearch");
+
+const faqItems =
+    document.querySelectorAll(".faq-item");
+
+const noResult =
+    document.getElementById("noResult");
+
+
+search.addEventListener(
+    "input",
+    function() {
+
+        const text =
+            search.value
+                .toLowerCase()
+                .trim();
+
+
+        let found = false;
+
+
+        faqItems.forEach(
+            function(item) {
+
+                const content =
+                    item.innerText
+                        .toLowerCase();
+
+
+                if (
+                    content.includes(text)
+                ) {
+
+                    item.style.display =
+                        "block";
+
+                    found = true;
+
+                } else {
+
+                    item.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        if (
+            !found &&
+            text !== ""
+        ) {
+
+            noResult.style.display =
+                "block";
+
+        } else {
+
+            noResult.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+</script>
+
+
+{% endblock %}
+

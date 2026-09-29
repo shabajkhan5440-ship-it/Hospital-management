@@ -1,0 +1,2036 @@
+
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Patient List | MedixCare</title>
+
+
+
+</head>
+
+
+<body>
+
+<style>
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --primary: #5b5cf0;
+
+    --primary-light: #eeeeff;
+
+    --background: #f6f7fb;
+
+    --white: #ffffff;
+
+    --text: #191a2b;
+
+    --muted: #9294a3;
+
+    --border: #e8e9f0;
+
+}
+
+
+body {
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+
+.page {
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+
+    height: 76px;
+
+    background: white;
+
+    border-bottom:
+        1px solid var(--border);
+
+    padding:
+        0 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.brand-icon {
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cf0,
+            #8174ff
+        );
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 7px 18px
+        rgba(91,92,240,.25);
+
+}
+
+
+.brand h2 {
+
+    font-size: 19px;
+
+}
+
+
+.brand h2 span {
+
+    color: var(--primary);
+
+}
+
+
+.brand small {
+
+    display: block;
+
+    color: #9b9daa;
+
+    font-size: 8px;
+
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+
+
+.notification {
+
+    width: 37px;
+    height: 37px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    position: relative;
+
+    font-size: 16px;
+
+}
+
+
+.notification i {
+
+    width: 6px;
+    height: 6px;
+
+    background: #ff5969;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    right: 7px;
+    top: 7px;
+
+}
+
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.profile-avatar {
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7779ff,
+            #a374ff
+        );
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.profile strong {
+
+    display: block;
+
+    font-size: 10px;
+
+}
+
+
+.profile small {
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+
+    padding:
+        35px 40px 60px;
+
+    max-width: 1500px;
+
+    margin: auto;
+
+}
+
+
+/* =========================
+   PAGE HEADING
+========================= */
+
+.page-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+}
+
+
+.breadcrumb {
+
+    color: #9b9daa;
+
+    font-size: 9px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.breadcrumb span {
+
+    margin: 0 6px;
+
+    color: #c2c3cc;
+
+}
+
+
+.page-heading h1 {
+
+    font-size: 25px;
+
+    letter-spacing: -.5px;
+
+}
+
+
+.page-heading p {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 5px;
+
+}
+
+
+.add-patient {
+
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cf0,
+            #706df7
+        );
+
+    color: white;
+
+    padding:
+        11px 16px;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 20px
+        rgba(91,92,240,.22);
+
+    transition: .25s;
+
+}
+
+
+.add-patient span {
+
+    font-size: 15px;
+
+    margin-right: 5px;
+
+}
+
+
+.add-patient:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(91,92,240,.30);
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 17px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.stat-card {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    box-shadow:
+        0 7px 25px
+        rgba(30,32,60,.04);
+
+}
+
+
+.stat-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 17px;
+
+}
+
+
+.stat-icon.blue {
+
+    color: #5b5cf0;
+
+    background: #eeeeff;
+
+}
+
+
+.stat-icon.green {
+
+    color: #22a879;
+
+    background: #e6f8f0;
+
+}
+
+
+.stat-icon.purple {
+
+    color: #985de8;
+
+    background: #f2eaff;
+
+}
+
+
+.stat-icon.orange {
+
+    color: #e59b2c;
+
+    background: #fff2df;
+
+}
+
+
+.stat-card span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.stat-card strong {
+
+    font-size: 19px;
+
+}
+
+
+/* =========================
+   PATIENT CARD
+========================= */
+
+.patient-card {
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(30,32,60,.05);
+
+    overflow: hidden;
+
+}
+
+
+/* =========================
+   CARD TOP
+========================= */
+
+.card-top {
+
+    padding:
+        22px 23px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid #f0f0f4;
+
+}
+
+
+.card-top h2 {
+
+    font-size: 15px;
+
+}
+
+
+.card-top p {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+
+    width: 285px;
+
+    height: 40px;
+
+    border:
+        1px solid var(--border);
+
+    background: #fafaff;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 10px;
+
+    gap: 8px;
+
+    transition: .25s;
+
+}
+
+
+.search-box:focus-within {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(91,92,240,.08);
+
+}
+
+
+.search-box > span {
+
+    color: #999baa;
+
+    font-size: 20px;
+
+}
+
+
+.search-box input {
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    width: 100%;
+
+    font-size: 10px;
+
+    color: #333;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: #afb0bb;
+
+}
+
+
+.search-box kbd {
+
+    white-space: nowrap;
+
+    color: #aaa;
+
+    background: white;
+
+    border:
+        1px solid #e9e9ef;
+
+    border-radius: 4px;
+
+    padding: 3px 5px;
+
+    font-size: 7px;
+
+}
+
+
+/* =========================
+   FILTER BAR
+========================= */
+
+.filter-bar {
+
+    min-height: 45px;
+
+    padding:
+        8px 23px;
+
+    background: #fcfcfe;
+
+    border-bottom:
+        1px solid #f0f0f4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.result-text {
+
+    color: #999baa;
+
+    font-size: 9px;
+
+}
+
+
+.result-text strong {
+
+    color: var(--primary);
+
+}
+
+
+.clear-search {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    display: none;
+
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+
+}
+
+
+thead {
+
+    background: #fafaff;
+
+}
+
+
+th {
+
+    text-align: left;
+
+    padding:
+        13px 20px;
+
+    color: #8e909f;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+    border-bottom:
+        1px solid #eeeeF3;
+
+}
+
+
+td {
+
+    padding:
+        14px 20px;
+
+    border-bottom:
+        1px solid #f1f1f5;
+
+    font-size: 10px;
+
+}
+
+
+.patient-row {
+
+    transition: .2s;
+
+}
+
+
+.patient-row:hover {
+
+    background: #fafaff;
+
+}
+
+
+.id-number {
+
+    color: #a0a1ae;
+
+    font-size: 9px;
+
+}
+
+
+.patient-id {
+
+    color: var(--primary);
+
+    background: #eeeeff;
+
+    padding:
+        5px 8px;
+
+    border-radius: 5px;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================
+   PATIENT
+========================= */
+
+.patient-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.patient-avatar {
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 10px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eeeeff,
+            #e3e2ff
+        );
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+    font-size: 11px;
+
+}
+
+
+.patient-info strong {
+
+    display: block;
+
+    font-size: 10px;
+
+}
+
+
+.patient-info small {
+
+    display: block;
+
+    color: #aaa;
+
+    font-size: 8px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================
+   GENDER
+========================= */
+
+.gender {
+
+    color: #646676;
+
+    font-size: 9px;
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        5px 8px;
+
+    border-radius: 6px;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.status i {
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+}
+
+
+.status.active {
+
+    color: #21a674;
+
+    background: #e7f8f0;
+
+}
+
+
+.status.active i {
+
+    background: #25b47d;
+
+}
+
+
+.status.pending {
+
+    color: #d99628;
+
+    background: #fff3df;
+
+}
+
+
+.status.pending i {
+
+    background: #e6a331;
+
+}
+
+
+.status.other {
+
+    color: #737587;
+
+    background: #f0f0f4;
+
+}
+
+
+.status.other i {
+
+    background: #858797;
+
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+.action {
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    transition: .2s;
+
+}
+
+
+.action.edit {
+
+    color: #5b5cf0;
+
+    background: #eeeeff;
+
+}
+
+
+.action.edit:hover {
+
+    color: white;
+
+    background: #5b5cf0;
+
+}
+
+
+.action.delete {
+
+    color: #ed626e;
+
+    background: #fff0f1;
+
+}
+
+
+.action.delete:hover {
+
+    color: white;
+
+    background: #ed626e;
+
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.empty-box > div {
+
+    width: 55px;
+    height: 55px;
+
+    margin:
+        0 auto 12px;
+
+    border-radius: 14px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    font-size: 24px;
+
+}
+
+
+.empty-box h3 {
+
+    font-size: 13px;
+
+}
+
+
+.empty-box p {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================
+   NO RESULT
+========================= */
+
+.no-result {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+}
+
+
+.no-result > div {
+
+    width: 55px;
+    height: 55px;
+
+    margin:
+        0 auto 12px;
+
+    border-radius: 14px;
+
+    background: #eeeeff;
+
+    color: var(--primary);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 23px;
+
+}
+
+
+.no-result h3 {
+
+    font-size: 13px;
+
+}
+
+
+.no-result p {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 1000px) {
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media(max-width: 700px) {
+
+    .topbar {
+
+        padding:
+            0 18px;
+
+    }
+
+    .profile {
+
+        display: none;
+
+    }
+
+    .content {
+
+        padding:
+            25px 15px;
+
+    }
+
+    .page-heading {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+
+    }
+
+    .card-top {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+
+    }
+
+    .search-box {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media(max-width: 500px) {
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .page-heading h1 {
+
+        font-size: 21px;
+
+    }
+
+    .add-patient {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+}</style>
+<div class="page">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                M
+            </div>
+
+            <div>
+
+                <h2>
+                    Medix<span>Care</span>
+                </h2>
+
+                <small>
+                    Hospital Management
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <button class="notification">
+                ♢
+                <i></i>
+            </button>
+
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <main class="content">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-heading">
+
+            <div>
+
+                <div class="breadcrumb">
+                    Dashboard
+                    <span>›</span>
+                    Patients
+                </div>
+
+                <h1>
+                    Patient List
+                </h1>
+
+                <p>
+                    Manage and view all registered patients
+                </p>
+
+            </div>
+
+
+            <a href="/add_patient/"
+               class="add-patient">
+
+                <span>+</span>
+
+                Add Patient
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ♙
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Patients
+                    </span>
+
+                    <strong id="totalPatients">
+                        {{ users|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Active Patients
+                    </span>
+
+                    <strong>
+                        {{ users|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    ◉
+                </div>
+
+                <div>
+
+                    <span>
+                        Patient Records
+                    </span>
+
+                    <strong>
+                        {{ users|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ▣
+                </div>
+
+                <div>
+
+                    <span>
+                        Today's Date
+                    </span>
+
+                    <strong id="today">
+                        {{ today_patients }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= PATIENT CARD ================= -->
+
+        <div class="patient-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="card-top">
+
+
+                <div>
+
+                    <h2>
+                        All Patients
+                    </h2>
+
+                    <p>
+                        Complete list of registered patients
+                    </p>
+
+                </div>
+
+
+
+                <!-- SEARCH -->
+
+                <div class="search-box">
+
+                    <span>
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="patientSearch"
+                        placeholder="Search patient..."
+                        autocomplete="off"
+                    >
+
+                    <kbd>
+                        Ctrl K
+                    </kbd>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FILTER BAR -->
+
+            <div class="filter-bar">
+
+
+                <div class="result-text">
+
+                    Showing
+                    <strong id="visibleCount">
+                        0
+                    </strong>
+                    patients
+
+                </div>
+
+
+                <button
+                    class="clear-search"
+                    id="clearSearch">
+
+                    Clear Search
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- ================= TABLE ================= -->
+
+            <div class="table-wrapper">
+
+                <table id="patientTable">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Patient ID
+                            </th>
+
+                            <th>
+                                Patient
+                            </th>
+
+                            <th>
+                                Gender
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody>
+
+
+                    {% for p in users %}
+
+                    <tr class="patient-row">
+
+
+                        <!-- ID -->
+
+                        <td>
+
+                            <span class="id-number">
+                                #{{ p.Pateint_id }}
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- PATIENT ID -->
+
+                        <td>
+
+                            <span class="patient-id">
+
+                                {{ p.patient_id }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- NAME -->
+
+                        <td>
+
+                            <div class="patient-info">
+
+
+                                <div class="patient-avatar">
+
+                                    {{ p.first_name|first|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+
+                                        {{ p.first_name }}
+                                        {{ p.last_name }}
+
+                                    </strong>
+
+                                    <small>
+                                        Patient
+                                    </small>
+
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- GENDER -->
+
+                        <td>
+
+                            <span class="gender">
+
+                                {{ p.gender }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if p.status == "Active" %}
+
+                                <span class="status active">
+                                    <i></i>
+                                    {{ p.status }}
+                                </span>
+
+                            {% elif p.status == "Pending" %}
+
+                                <span class="status pending">
+                                    <i></i>
+                                    {{ p.status }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="status other">
+                                    <i></i>
+                                    {{ p.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                            <div class="actions">
+
+
+                                <a
+                                    href="{% url 'patient_edit' p.id %}"
+                                    class="action edit"
+                                    title="Edit Patient">
+
+                                    ✎
+
+                                </a>
+
+
+                                <a
+                                    href="/Delete/{{ p.id }}/"
+                                    class="action delete"
+                                    title="Delete Patient"
+                                    onclick="return confirmDelete();">
+
+                                    ♲
+
+                                </a>
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% empty %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty">
+
+                            <div class="empty-box">
+
+                                <div>
+                                    ♙
+                                </div>
+
+                                <h3>
+                                    No Patients Found
+                                </h3>
+
+                                <p>
+                                    There are currently no registered patients.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- NO SEARCH RESULT -->
+
+                <div
+                    class="no-result"
+                    id="noResult">
+
+                    <div>
+                        ⌕
+                    </div>
+
+                    <h3>
+                        No matching patient
+                    </h3>
+
+                    <p>
+                        Try searching with another name or patient ID.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script>
+
+    javascript
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =========================
+           ELEMENTS
+        ========================= */
+
+        const searchInput =
+            document.getElementById(
+                "patientSearch"
+            );
+
+
+        const rows =
+            document.querySelectorAll(
+                ".patient-row"
+            );
+
+
+        const visibleCount =
+            document.getElementById(
+                "visibleCount"
+            );
+
+
+        const noResult =
+            document.getElementById(
+                "noResult"
+            );
+
+
+        const clearSearch =
+            document.getElementById(
+                "clearSearch"
+            );
+
+
+        /* =========================
+           TODAY
+        ========================= */
+
+        const today =
+            document.getElementById("today");
+
+
+        const date =
+            new Date();
+
+
+        today.textContent =
+            date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short"
+                }
+            );
+
+
+        /* =========================
+           SEARCH FUNCTION
+        ========================= */
+
+        function searchPatients() {
+
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            let count = 0;
+
+
+            rows.forEach(row => {
+
+
+                const text =
+                    row.textContent
+                        .toLowerCase();
+
+
+                if (
+                    text.includes(search)
+                ) {
+
+                    row.style.display =
+                        "";
+
+                    count++;
+
+                }
+
+                else {
+
+                    row.style.display =
+                        "none";
+
+                }
+
+            });
+
+
+            visibleCount.textContent =
+                count;
+
+
+            /* No result */
+
+            if (
+                count === 0 &&
+                rows.length > 0
+            ) {
+
+                noResult.style.display =
+                    "block";
+
+            }
+
+            else {
+
+                noResult.style.display =
+                    "none";
+
+            }
+
+
+            /* Clear button */
+
+            if (search.length > 0) {
+
+                clearSearch.style.display =
+                    "block";
+
+            }
+
+            else {
+
+                clearSearch.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        /* =========================
+           INPUT EVENT
+        ========================= */
+
+        searchInput.addEventListener(
+            "input",
+            searchPatients
+        );
+
+
+        /* =========================
+           CLEAR SEARCH
+        ========================= */
+
+        clearSearch.addEventListener(
+            "click",
+            function () {
+
+                searchInput.value = "";
+
+                searchInput.focus();
+
+                searchPatients();
+
+            }
+        );
+
+
+        /* =========================
+           CTRL + K
+        ========================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    (event.ctrlKey ||
+                     event.metaKey) &&
+                    event.key.toLowerCase() === "k"
+                ) {
+
+                    event.preventDefault();
+
+                    searchInput.focus();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           INITIAL COUNT
+        ========================= */
+
+        visibleCount.textContent =
+            rows.length;
+
+    }
+);
+
+
+/* =========================
+   DELETE CONFIRMATION
+========================= */
+
+function confirmDelete() {
+
+    return confirm(
+        "Are you sure you want to delete this patient?"
+    );
+
+}
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
