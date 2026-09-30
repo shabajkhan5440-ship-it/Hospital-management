@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | MedCare Hospital</title>
+
+    <link rel="stylesheet" href="{% static ' css/about.css' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #17202a;
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+/* ================= NAVBAR ================= */
+
+.header {
+    width: 100%;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, .06);
+}
+
+.nav {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo span {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #0b8f87;
+    color: white;
+}
+
+.logo > span + span {
+    background: none;
+}
+
+.logo > span:last-child {
+    background: none;
+    width: auto;
+    height: auto;
+    color: #0b8f87;
+}
+
+.navbar {
+    display: flex;
+    gap: 28px;
+}
+
+.navbar a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #52616b;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #0b8f87;
+}
+
+.appointment-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #0b8f87;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.appointment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(11,143,135,.25);
+}
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+        /* ================= FOOTER ================= */
+
+.footer {
+    background: #09262d;
+    color: white;
+    padding-top: 70px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+
+.footer-about p {
+    color: #a8bdc2;
+    max-width: 300px;
+    margin: 20px 0;
+}
+
+.footer h4 {
+    margin-bottom: 20px;
+}
+
+.footer-grid > div:not(.footer-about) a {
+    display: block;
+    color: #a8bdc2;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.footer-grid > div:not(.footer-about) a:hover {
+    color: white;
+}
+
+.footer p {
+    color: #a8bdc2;
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.footer p i {
+    color: #22c5ba;
+    width: 25px;
+}
+
+.socials {
+    display: flex;
+    gap: 10px;
+}
+
+.socials a {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #35545a;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.socials a:hover {
+    background: #0b9d94;
+    border-color: #0b9d94;
+}
+
+.copyright {
+    border-top: 1px solid #28434a;
+    text-align: center;
+    padding: 20px;
+    color: #8fa6ab;
+    font-size: 13px;
+}
+
+   </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            <span><i class="fa-solid fa-heart-pulse"></i></span>
+            Med<span>Care</span>
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <a href="">Home</a>
+            <a href="/labratory_addpatentie/" class="">labratory_addpatentie</a>
+            <a href="/labratory_doctor/">Doctors</a>
+            <a href="/Service/">Services</a>
+            <a href="/labratory/">Laboratory</a>
+            <a href="/Contact/">Contact</a>
+            <a href="/help-center/">Help</a>
+        </nav>
+
+        <a href="/Appointment/" class="appointment-btn">
+            Book Appointment
+        </a>
+<!--    <a href="{% url 'help_center' %}" class="help-center-btn">-->
+<!--    <span class="help-icon">?</span>-->
+<!--    Help-->
+<!--</a>-->
+        <button class="menu-btn" id="menuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+</header>
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-about">
+
+            <a href="#" class="logo">
+                <span><i class="fa-solid fa-heart-pulse"></i></span>
+                Med<span>Care</span>
+            </a>
+
+            <p>
+                Providing trusted healthcare with compassion,
+                technology and excellence.
+            </p>
+
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+
+        </div>
+
+
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Doctors</a>
+            <a href="#">Services</a>
+        </div>
+
+
+        <div>
+            <h4>Services</h4>
+            <a href="#">Emergency Care</a>
+            <a href="#">Laboratory</a>
+            <a href="#">Diagnostics</a>
+            <a href="#">Pharmacy</a>
+        </div>
+
+
+        <div>
+            <h4>Contact</h4>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Mumbai, Maharashtra
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                +91 98765 43210
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                info@medcare.com
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 MedCare Hospital. All Rights Reserved.
+    </div>
+
+</footer>
+
+</body>
+</html>
