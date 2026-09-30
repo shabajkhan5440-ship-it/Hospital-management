@@ -1,0 +1,1830 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Services | MediCare Hospital</title>
+
+    <link rel="stylesheet" href="services.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #14272d;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+
+/* ================= NAVBAR ================= */
+
+
+
+
+/* ================= HERO ================= */
+
+.service-hero {
+    height: 680px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,30,37,.94),
+            rgba(3,30,37,.65),
+            rgba(3,30,37,.15)
+        ),
+        url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=90")
+        center/cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(1150px, 90%);
+    margin: auto;
+
+    color: white;
+}
+
+.hero-tag {
+    color: #25c5b8;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-tag span {
+    width: 35px;
+    height: 2px;
+
+    background: #25c5b8;
+}
+
+.hero-content h1 {
+    font-size: clamp(50px, 7vw, 80px);
+
+    line-height: 1.02;
+
+    margin: 25px 0;
+}
+
+.hero-content h1 span {
+    color: #25c5b8;
+}
+
+.hero-description {
+    max-width: 600px;
+
+    color: #d2e0e2;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+.primary-btn,
+.outline-btn {
+    padding: 14px 22px;
+
+    border-radius: 7px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.primary-btn {
+    background: #079d91;
+}
+
+.outline-btn {
+    border: 1px solid rgba(255,255,255,.5);
+}
+
+.outline-btn:hover {
+    background: white;
+    color: #14272d;
+}
+
+
+/* ================= INTRO ================= */
+
+.intro {
+    padding: 100px 0;
+}
+
+.intro-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.section-tag {
+    color: #079d91;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.intro h2,
+.section-heading h2 {
+    font-size: 47px;
+
+    line-height: 1.1;
+
+    margin: 18px 0;
+}
+
+.intro h2 span,
+.section-heading h2 span {
+    color: #079d91;
+    display: block;
+}
+
+.intro-content > p:last-child {
+    color: #718086;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    max-width: 650px;
+}
+
+.intro-number {
+    justify-self: end;
+
+    width: 270px;
+    height: 170px;
+
+    border-radius: 20px;
+
+    background: #073a43;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    box-shadow: 20px 20px 0 #e5f8f5;
+}
+
+.intro-number strong {
+    color: #25c5b8;
+
+    font-size: 75px;
+
+    line-height: 1;
+}
+
+.intro-number span,
+.intro-number b {
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.intro-number b {
+    color: #25c5b8;
+
+    margin-top: 5px;
+}
+
+
+/* ================= SERVICES ================= */
+
+.services {
+    padding: 110px 0;
+
+    background: #f5fafa;
+}
+
+.section-heading {
+    max-width: 650px;
+
+    text-align: center;
+
+    margin: 0 auto 60px;
+}
+
+.section-heading > p:last-child {
+    color: #718086;
+
+    font-size: 14px;
+}
+
+.service-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.service-card {
+    position: relative;
+
+    background: white;
+
+    padding: 30px 25px;
+
+    min-height: 285px;
+
+    border: 1px solid #e4eeee;
+
+    border-radius: 18px;
+
+    transition: .4s;
+
+    overflow: hidden;
+}
+
+.service-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: #079d91;
+
+    transition: .4s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+
+    box-shadow: 0 25px 50px rgba(0,0,0,.08);
+}
+
+.service-card:hover::after {
+    width: 100%;
+}
+
+.service-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: start;
+}
+
+.service-icon {
+    width: 58px;
+    height: 58px;
+
+    background: #e5f8f5;
+    color: #079d91;
+
+    border-radius: 14px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 23px;
+}
+
+.service-top > span {
+    color: #dce8e8;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+.service-card h3 {
+    font-size: 18px;
+
+    margin: 22px 0 10px;
+}
+
+.service-card p {
+    color: #718086;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.service-card a {
+    position: absolute;
+
+    bottom: 25px;
+
+    color: #079d91;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* ================= EMERGENCY ================= */
+
+.emergency {
+    padding: 55px 0;
+
+    background: #079d91;
+
+    color: white;
+}
+
+.emergency-inner {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.emergency-icon {
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.15);
+
+    display: grid;
+    place-items: center;
+
+    font-size: 28px;
+}
+
+.emergency-text {
+    flex: 1;
+}
+
+.emergency-text p {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+}
+
+.emergency-text h2 {
+    font-size: 28px;
+
+    margin: 5px 0;
+}
+
+.emergency-text span {
+    color: #d2fffb;
+
+    font-size: 12px;
+}
+
+.emergency-btn {
+    padding: 15px 22px;
+
+    background: white;
+
+    color: #073a43;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ================= DEPARTMENTS ================= */
+
+.departments {
+    padding: 110px 0;
+}
+
+.department-grid {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 15px;
+}
+
+.department {
+    min-height: 140px;
+
+    border: 1px solid #e5eeee;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    transition: .4s;
+}
+
+.department i {
+    color: #079d91;
+
+    font-size: 28px;
+}
+
+.department span {
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.department:hover {
+    background: #079d91;
+
+    color: white;
+
+    transform: translateY(-7px);
+
+    box-shadow: 0 20px 35px rgba(7,157,145,.2);
+}
+
+.department:hover i {
+    color: white;
+}
+
+
+/* ================= CTA ================= */
+
+.cta {
+    padding: 75px 0;
+
+    background: #073a43;
+
+    color: white;
+}
+
+.cta-inner {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.cta-inner p {
+    color: #25c5b8;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+}
+
+.cta h2 {
+    font-size: 42px;
+
+    margin-top: 8px;
+}
+
+.cta h2 span {
+    color: #25c5b8;
+}
+
+.cta-btn {
+    padding: 15px 23px;
+
+    background: #079d91;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #09262d;
+
+    color: white;
+
+    padding-top: 70px;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+
+    gap: 50px;
+
+    padding-bottom: 55px;
+}
+
+.footer-about {
+    max-width: 300px;
+
+    color: #a7bdc1;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    margin: 20px 0;
+}
+
+footer h4 {
+    margin-bottom: 20px;
+}
+
+footer > .container > div:not(:first-child) a {
+    display: block;
+
+    color: #9eb5b9;
+
+    font-size: 12px;
+
+    margin: 11px 0;
+}
+
+footer > .container > div:not(:first-child) a:hover {
+    color: #25c5b8;
+}
+
+footer p {
+    color: #9eb5b9;
+
+    font-size: 12px;
+
+    margin: 12px 0;
+}
+
+footer p i {
+    color: #25c5b8;
+
+    width: 22px;
+}
+
+.social {
+    display: flex;
+
+    gap: 10px;
+}
+
+.social a {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid #35545a;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    transition: .3s;
+}
+
+.social a:hover {
+    background: #079d91;
+
+    border-color: #079d91;
+}
+
+.copyright {
+    border-top: 1px solid #28434a;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #7f999e;
+
+    font-size: 11px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1050px) {
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .department-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media(max-width: 950px) {
+
+    nav {
+        position: absolute;
+
+        top: 80px;
+        left: 0;
+
+        width: 100%;
+
+        background: white;
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        gap: 18px;
+
+        transform: translateY(-150%);
+
+        transition: .4s;
+    }
+
+    nav.active {
+        transform: translateY(0);
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-number {
+        justify-self: start;
+    }
+
+    .emergency-inner {
+        flex-wrap: wrap;
+    }
+
+    .emergency-text {
+        min-width: 60%;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    .service-hero {
+        height: 650px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .intro,
+    .services,
+    .departments {
+        padding: 80px 0;
+    }
+
+    .intro h2,
+    .section-heading h2 {
+        font-size: 35px;
+    }
+
+    .intro-number {
+        width: 240px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .department-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .emergency-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .emergency-text {
+        min-width: auto;
+    }
+
+    .cta-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+    }
+
+    .cta h2 {
+        font-size: 34px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="service-hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-tag">
+            <span></span>
+            OUR HEALTHCARE SERVICES
+        </p>
+
+        <h1>
+            Complete Care.
+            <span>One Place.</span>
+        </h1>
+
+        <p class="hero-description">
+            From preventive care to advanced treatment,
+            our medical team provides comprehensive healthcare
+            designed around you.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#services" class="primary-btn">
+                Explore Services
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+
+            <a href="#" class="outline-btn">
+                Book Appointment
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro">
+
+    <div class="container intro-grid">
+
+        <div class="intro-content">
+
+            <p class="section-tag">
+                WHAT WE OFFER
+            </p>
+
+            <h2>
+                Healthcare Designed
+                <span>Around You.</span>
+            </h2>
+
+            <p>
+                At MediCare Hospital, we bring multiple healthcare
+                specialties and advanced diagnostic services under
+                one roof.
+            </p>
+
+            <p>
+                Our experienced doctors and trained medical staff
+                work together to provide safe, personalized and
+                effective treatment.
+            </p>
+
+        </div>
+
+        <div class="intro-number">
+
+            <strong>24</strong>
+
+            <div>
+                <span>HOURS</span>
+                <b>OF CARE</b>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="services" id="services">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-tag">
+                OUR SERVICES
+            </p>
+
+            <h2>
+                Medical Care For
+                <span>Every Need.</span>
+            </h2>
+
+            <p>
+                Professional healthcare services supported by
+                experienced specialists and modern technology.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+
+            <!-- SERVICE 01 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-truck-medical"></i>
+                    </div>
+
+                    <span>01</span>
+
+                </div>
+
+                <h3>Emergency Care</h3>
+
+                <p>
+                    Fast and reliable emergency medical support
+                    available 24 hours a day, 7 days a week.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 02 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span>02</span>
+
+                </div>
+
+                <h3>Doctor Consultation</h3>
+
+                <p>
+                    Consult experienced specialists for diagnosis,
+                    treatment planning and medical advice.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 03 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+
+                    <span>03</span>
+
+                </div>
+
+                <h3>Laboratory</h3>
+
+                <p>
+                    Reliable laboratory testing with modern
+                    equipment and accurate diagnostic reports.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 04 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+
+                    <span>04</span>
+
+                </div>
+
+                <h3>Ultrasound & Imaging</h3>
+
+                <p>
+                    Advanced imaging and ultrasound services
+                    supported by modern diagnostic technology.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 05 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <span>05</span>
+
+                </div>
+
+                <h3>Pharmacy</h3>
+
+                <p>
+                    Convenient access to prescribed medicines
+                    and essential healthcare products.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 06 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-bed-pulse"></i>
+                    </div>
+
+                    <span>06</span>
+
+                </div>
+
+                <h3>Patient Care</h3>
+
+                <p>
+                    Dedicated nursing and patient support services
+                    throughout your healthcare journey.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 07 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+
+                    <span>07</span>
+
+                </div>
+
+                <h3>Cardiology</h3>
+
+                <p>
+                    Specialized cardiac consultation, diagnosis
+                    and treatment from experienced professionals.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <!-- SERVICE 08 -->
+
+            <div class="service-card">
+
+                <div class="service-top">
+
+                    <div class="service-icon">
+                        <i class="fa-solid fa-person-breastfeeding"></i>
+                    </div>
+
+                    <span>08</span>
+
+                </div>
+
+                <h3>Women's Health</h3>
+
+                <p>
+                    Comprehensive healthcare services focused
+                    on women's health and wellbeing.
+                </p>
+
+                <a href="#">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMERGENCY ================= -->
+
+<section class="emergency">
+
+    <div class="container emergency-inner">
+
+        <div class="emergency-icon">
+
+            <i class="fa-solid fa-truck-medical"></i>
+
+        </div>
+
+        <div class="emergency-text">
+
+            <p>MEDICAL EMERGENCY?</p>
+
+            <h2>
+                We're Here When You Need Us.
+            </h2>
+
+            <span>
+                Our emergency department operates 24 hours,
+                7 days a week.
+            </span>
+
+        </div>
+
+        <a href="tel:+919876543210" class="emergency-btn">
+
+            <i class="fa-solid fa-phone"></i>
+
+            +91 98765 43210
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DEPARTMENTS ================= -->
+
+<section class="departments">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <p class="section-tag">
+                SPECIALIZED DEPARTMENTS
+            </p>
+
+            <h2>
+                Expertise You Can
+                <span>Trust.</span>
+            </h2>
+
+        </div>
+
+
+        <div class="department-grid">
+
+            <div class="department">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>Cardiology</span>
+            </div>
+
+            <div class="department">
+                <i class="fa-solid fa-brain"></i>
+                <span>Neurology</span>
+            </div>
+
+            <div class="department">
+                <i class="fa-solid fa-baby"></i>
+                <span>Pediatrics</span>
+            </div>
+
+            <div class="department">
+                <i class="fa-solid fa-person"></i>
+                <span>Orthopedics</span>
+            </div>
+
+            <div class="department">
+                <i class="fa-solid fa-venus"></i>
+                <span>Gynecology</span>
+            </div>
+
+            <div class="department">
+                <i class="fa-solid fa-lungs"></i>
+                <span>Pulmonology</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="container cta-inner">
+
+        <div>
+
+            <p>
+                NEED MEDICAL ASSISTANCE?
+            </p>
+
+            <h2>
+                Your Health.
+                <span>Our Priority.</span>
+            </h2>
+
+        </div>
+
+        <a href="#" class="cta-btn">
+
+            Book An Appointment
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+
+
+
+<!-- ================= GSAP ================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+
+    // ==========================================
+// GSAP SETUP
+// ==========================================
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+
+const menu = document.querySelector(".menu");
+const nav = document.querySelector("nav");
+
+if (menu && nav) {
+
+    menu.addEventListener("click", () => {
+
+        nav.classList.toggle("active");
+
+        const icon = menu.querySelector("i");
+
+        if (nav.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// NAVBAR
+// ==========================================
+
+gsap.from(".navbar", {
+    y: -50,
+    duration: 0.8,
+    ease: "power3.out"
+});
+
+
+// ==========================================
+// HERO
+// ==========================================
+
+gsap.from(".hero-content", {
+
+    y: 50,
+    duration: 1,
+    ease: "power3.out"
+
+});
+
+
+// ==========================================
+// HERO BACKGROUND
+// ==========================================
+
+gsap.to(".hero-bg", {
+
+    scale: 1.08,
+
+    ease: "none",
+
+    scrollTrigger: {
+
+        trigger: ".service-hero",
+
+        start: "top top",
+
+        end: "bottom top",
+
+        scrub: 1
+
+    }
+
+});
+
+
+// ==========================================
+// INTRO
+// ==========================================
+
+gsap.from(".intro-content", {
+
+    x: -50,
+
+    duration: 0.8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".intro",
+
+        start: "top 85%",
+
+        once: true
+
+    }
+
+});
+
+
+gsap.from(".intro-number", {
+
+    x: 50,
+
+    duration: 0.8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".intro",
+
+        start: "top 85%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// SERVICE HEADING
+// ==========================================
+
+gsap.from(".services .section-heading", {
+
+    y: 40,
+
+    duration: 0.8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".services",
+
+        start: "top 85%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// SERVICE CARDS
+// IMPORTANT:
+// NO OPACITY ANIMATION HERE
+// CARDS WILL ALWAYS REMAIN VISIBLE
+// ==========================================
+
+const serviceCards = document.querySelectorAll(".service-card");
+
+serviceCards.forEach((card, index) => {
+
+    // Initial small movement only
+    gsap.fromTo(card,
+
+        {
+            y: 25
+        },
+
+        {
+            y: 0,
+
+            duration: 0.6,
+
+            delay: index * 0.05,
+
+            ease: "power2.out",
+
+            scrollTrigger: {
+
+                trigger: card,
+
+                start: "top 95%",
+
+                once: true
+
+            }
+
+        }
+
+    );
+
+
+    // --------------------------------------
+    // CARD HOVER
+    // --------------------------------------
+
+    card.addEventListener("mouseenter", () => {
+
+        gsap.to(card, {
+
+            y: -8,
+
+            scale: 1.02,
+
+            duration: 0.3,
+
+            ease: "power2.out"
+
+        });
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+        gsap.to(card, {
+
+            y: 0,
+
+            scale: 1,
+
+            duration: 0.3,
+
+            ease: "power2.out"
+
+        });
+
+    });
+
+
+    // --------------------------------------
+    // ICON HOVER
+    // --------------------------------------
+
+    const icon = card.querySelector(".service-icon");
+
+    if (icon) {
+
+        card.addEventListener("mouseenter", () => {
+
+            gsap.to(icon, {
+
+                scale: 1.12,
+
+                rotate: 5,
+
+                duration: 0.3,
+
+                ease: "back.out(1.5)"
+
+            });
+
+        });
+
+
+        card.addEventListener("mouseleave", () => {
+
+            gsap.to(icon, {
+
+                scale: 1,
+
+                rotate: 0,
+
+                duration: 0.3
+
+            });
+
+        });
+
+    }
+
+});
+
+
+// ==========================================
+// EMERGENCY
+// ==========================================
+
+gsap.from(".emergency-inner", {
+
+    y: 30,
+
+    duration: 0.8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".emergency",
+
+        start: "top 90%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// DEPARTMENTS
+// IMPORTANT:
+// NO OPACITY
+// ==========================================
+
+const departments = document.querySelectorAll(".department");
+
+departments.forEach((department, index) => {
+
+    gsap.fromTo(
+
+        department,
+
+        {
+            y: 20
+        },
+
+        {
+            y: 0,
+
+            duration: 0.5,
+
+            delay: index * 0.05,
+
+            ease: "power2.out",
+
+            scrollTrigger: {
+
+                trigger: department,
+
+                start: "top 95%",
+
+                once: true
+
+            }
+
+        }
+
+    );
+
+
+    const icon = department.querySelector("i");
+
+    if (icon) {
+
+        department.addEventListener("mouseenter", () => {
+
+            gsap.to(icon, {
+
+                scale: 1.2,
+
+                y: -4,
+
+                duration: 0.3,
+
+                ease: "back.out(1.5)"
+
+            });
+
+        });
+
+
+        department.addEventListener("mouseleave", () => {
+
+            gsap.to(icon, {
+
+                scale: 1,
+
+                y: 0,
+
+                duration: 0.3
+
+            });
+
+        });
+
+    }
+
+});
+
+
+// ==========================================
+// CTA
+// ==========================================
+
+gsap.from(".cta-inner", {
+
+    y: 40,
+
+    duration: 0.8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".cta",
+
+        start: "top 90%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// FOOTER
+// ==========================================
+
+gsap.from(".footer-grid > div", {
+
+    y: 25,
+
+    duration: 0.6,
+
+    stagger: 0.1,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: "footer",
+
+        start: "top 95%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// CTA BUTTON HOVER
+// ==========================================
+
+const ctaButton = document.querySelector(".cta-btn");
+
+if (ctaButton) {
+
+    ctaButton.addEventListener("mouseenter", () => {
+
+        gsap.to(ctaButton, {
+
+            scale: 1.05,
+
+            duration: 0.25
+
+        });
+
+    });
+
+
+    ctaButton.addEventListener("mouseleave", () => {
+
+        gsap.to(ctaButton, {
+
+            scale: 1,
+
+            duration: 0.25
+
+        });
+
+    });
+
+}
+
+
+// ==========================================
+// REFRESH
+// ==========================================
+
+window.addEventListener("load", () => {
+
+    ScrollTrigger.refresh();
+
+});
+</script>
+
+</body>
+</html>
+{% endblock %}

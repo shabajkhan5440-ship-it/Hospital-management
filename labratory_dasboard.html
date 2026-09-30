@@ -1,0 +1,2495 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Laboratory | MediCare Hospital</title>
+
+    <link rel="stylesheet" href="laboratory.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #14272d;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+
+/* ================= NAVBAR ================= */
+
+
+
+
+
+/* ================= HERO ================= */
+
+.lab-hero {
+    height: 690px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.lab-hero-bg {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,30,37,.94),
+            rgba(3,30,37,.70),
+            rgba(3,30,37,.18)
+        ),
+        url("https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1800&q=90")
+        center/cover;
+}
+
+.hero-inner {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.hero-content {
+    color: white;
+
+    max-width: 680px;
+}
+
+.hero-tag {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #25c5b8;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+}
+
+.hero-tag span {
+    width: 35px;
+    height: 2px;
+
+    background: #25c5b8;
+}
+
+.hero-content h1 {
+    font-size: clamp(48px, 6vw, 76px);
+
+    line-height: 1.04;
+
+    margin: 25px 0;
+}
+
+.hero-content h1 span {
+    display: block;
+
+    color: #25c5b8;
+}
+
+.hero-description {
+    max-width: 590px;
+
+    color: #d4e2e4;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 35px;
+}
+
+.primary-btn,
+.outline-btn {
+    padding: 14px 21px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.primary-btn {
+    background: #079d91;
+}
+
+.outline-btn {
+    border: 1px solid rgba(255,255,255,.5);
+}
+
+.outline-btn:hover {
+    background: white;
+
+    color: #073a43;
+}
+
+
+/* ================= FLOATING CARD ================= */
+
+.lab-floating-card {
+    width: 230px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.12);
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    backdrop-filter: blur(15px);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.floating-icon {
+    width: 55px;
+    height: 55px;
+
+    border-radius: 15px;
+
+    background: #079d91;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 22px;
+}
+
+.lab-floating-card strong {
+    display: block;
+
+    font-size: 28px;
+
+    color: #25c5b8;
+}
+
+.lab-floating-card span {
+    display: block;
+
+    color: #d7e6e7;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+/* ================= INTRO ================= */
+
+.lab-intro {
+    padding: 110px 0;
+}
+
+.intro-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-image img {
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 22px;
+}
+
+.image-badge {
+    position: absolute;
+
+    right: -25px;
+
+    bottom: 30px;
+
+    background: white;
+
+    padding: 18px 22px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.12);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.image-badge > i {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #e4f8f5;
+
+    color: #079d91;
+
+    display: grid;
+
+    place-items: center;
+}
+
+.image-badge strong,
+.image-badge span {
+    display: block;
+}
+
+.image-badge strong {
+    font-size: 13px;
+}
+
+.image-badge span {
+    color: #78878b;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+.section-tag {
+    color: #079d91;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.intro-content h2,
+.section-heading h2,
+.why-content h2,
+.booking-content h2 {
+    font-size: 45px;
+
+    line-height: 1.1;
+
+    margin: 18px 0;
+}
+
+.intro-content h2 span,
+.section-heading h2 span,
+.why-content h2 span,
+.booking-content h2 span {
+    color: #079d91;
+
+    display: block;
+}
+
+.intro-content > p:not(.section-tag) {
+    color: #718086;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    margin-top: 15px;
+}
+
+.lab-stats {
+    display: flex;
+
+    gap: 35px;
+
+    margin-top: 30px;
+}
+
+.lab-stats strong,
+.lab-stats span {
+    display: block;
+}
+
+.lab-stats strong {
+    color: #079d91;
+
+    font-size: 25px;
+}
+
+.lab-stats span {
+    color: #7b898d;
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* ================= TESTS ================= */
+
+.tests {
+    padding: 110px 0;
+
+    background: #f5fafa;
+}
+
+.section-heading {
+    text-align: center;
+
+    max-width: 650px;
+
+    margin: 0 auto 60px;
+}
+
+.section-heading > p:last-child {
+    color: #718086;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.test-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.test-card {
+    position: relative;
+
+    min-height: 285px;
+
+    padding: 28px;
+
+    background: white;
+
+    border: 1px solid #e5eeee;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition: .4s;
+}
+
+.test-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 25px 55px rgba(0,0,0,.08);
+}
+
+.test-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 14px;
+
+    background: #e4f8f5;
+
+    color: #079d91;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 23px;
+}
+
+.test-number {
+    position: absolute;
+
+    top: 25px;
+
+    right: 25px;
+
+    color: #e0ebeb;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.test-card h3 {
+    font-size: 17px;
+
+    margin-top: 22px;
+}
+
+.test-card p {
+    color: #748287;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    margin-top: 10px;
+}
+
+.test-bottom {
+    position: absolute;
+
+    left: 28px;
+    right: 28px;
+    bottom: 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.test-bottom span {
+    color: #9aa8aa;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.test-bottom a {
+    color: #079d91;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+/* ================= DIAGNOSTICS ================= */
+
+.diagnostics {
+    padding: 110px 0;
+}
+
+.diagnostic-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.diagnostic-card {
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border: 1px solid #e3eded;
+
+    border-radius: 17px;
+
+    transition: .4s;
+}
+
+.diagnostic-card i {
+    font-size: 32px;
+
+    color: #079d91;
+
+    margin-bottom: 20px;
+}
+
+.diagnostic-card h3 {
+    font-size: 16px;
+
+    margin-bottom: 10px;
+}
+
+.diagnostic-card p {
+    color: #758388;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+}
+
+.diagnostic-card:hover {
+    background: #079d91;
+
+    color: white;
+
+    transform: translateY(-8px);
+}
+
+.diagnostic-card:hover i {
+    color: white;
+}
+
+.diagnostic-card:hover p {
+    color: #d5fffb;
+}
+
+
+/* ================= WHY ================= */
+
+.why-lab {
+    padding: 110px 0;
+
+    background: #f5fafa;
+}
+
+.why-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 400px;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+.why-list {
+    margin-top: 35px;
+}
+
+.why-item {
+    display: flex;
+
+    gap: 18px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #e0ebeb;
+}
+
+.why-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    background: #e4f8f5;
+
+    color: #079d91;
+
+    border-radius: 13px;
+
+    display: grid;
+
+    place-items: center;
+}
+
+.why-item h3 {
+    font-size: 15px;
+}
+
+.why-item p {
+    color: #758388;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    margin-top: 5px;
+}
+
+.why-box {
+    padding: 45px;
+
+    border-radius: 25px;
+
+    background: #073a43;
+
+    color: white;
+
+    text-align: center;
+
+    box-shadow: 20px 20px 0 #d9f3ef;
+}
+
+.why-box > i {
+    color: #25c5b8;
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+}
+
+.why-box strong {
+    display: block;
+
+    color: #25c5b8;
+
+    font-size: 55px;
+}
+
+.why-box > span {
+    display: block;
+
+    color: #d1e1e2;
+
+    font-size: 11px;
+}
+
+.progress {
+    height: 6px;
+
+    background: #31565c;
+
+    border-radius: 10px;
+
+    margin: 25px 0;
+}
+
+.progress span {
+    display: block;
+
+    width: 99.8%;
+
+    height: 100%;
+
+    background: #25c5b8;
+
+    border-radius: 10px;
+}
+
+.why-box p {
+    color: #a9c0c3;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+}
+
+
+/* ================= BOOKING ================= */
+
+.booking {
+    padding: 110px 0;
+}
+
+.booking-inner {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.booking-content > p:not(.section-tag) {
+    color: #718086;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    max-width: 500px;
+}
+
+.booking-contact {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.booking-contact > i {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 13px;
+
+    background: #e4f8f5;
+
+    color: #079d91;
+
+    display: grid;
+
+    place-items: center;
+}
+
+.booking-contact span,
+.booking-contact strong {
+    display: block;
+}
+
+.booking-contact span {
+    color: #8a989b;
+
+    font-size: 10px;
+}
+
+.booking-contact strong {
+    font-size: 15px;
+
+    margin-top: 4px;
+}
+
+.booking-form {
+    padding: 35px;
+
+    background: #f5fafa;
+
+    border: 1px solid #e1eeee;
+
+    border-radius: 20px;
+}
+
+.input-group {
+    margin-bottom: 17px;
+}
+
+.input-group label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+
+    border: 1px solid #dce8e8;
+
+    background: white;
+
+    padding: 13px;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    color: #4d5e62;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #079d91;
+}
+
+.input-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.booking-form button {
+    width: 100%;
+
+    border: 0;
+
+    background: #079d91;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ================= FOOTER ================= */
+
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1000px) {
+
+    nav {
+        gap: 15px;
+    }
+
+    .test-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diagnostic-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+}
+
+
+@media(max-width: 850px) {
+
+    nav {
+        position: absolute;
+
+        top: 80px;
+        left: 0;
+
+        width: 100%;
+
+        background: white;
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        transform: translateY(-150%);
+
+        transition: .4s;
+    }
+
+    nav.active {
+        transform: translateY(0);
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .lab-floating-card {
+        display: none;
+    }
+
+    .intro-grid,
+    .booking-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-image img {
+        height: 400px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media(max-width: 600px) {
+
+    .lab-hero {
+        height: 650px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .lab-intro,
+    .tests,
+    .diagnostics,
+    .why-lab,
+    .booking {
+        padding: 80px 0;
+    }
+
+    .intro-content h2,
+    .section-heading h2,
+    .why-content h2,
+    .booking-content h2 {
+        font-size: 36px;
+    }
+
+    .test-grid,
+    .diagnostic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-stats {
+        gap: 18px;
+    }
+
+    .image-badge {
+        right: 15px;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-form {
+        padding: 25px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+</style>
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="lab-hero">
+
+    <div class="lab-hero-bg"></div>
+
+    <div class="container hero-inner">
+
+        <div class="hero-content">
+
+            <p class="hero-tag">
+
+                <span></span>
+
+                ADVANCED DIAGNOSTIC LABORATORY
+
+            </p>
+
+
+            <h1>
+
+                Accurate Results.
+                <span>Better Care.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Advanced laboratory testing with reliable,
+                accurate and timely diagnostic reports to
+                support better healthcare decisions.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#tests" class="primary-btn">
+
+                    Explore Tests
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                </a>
+
+
+                <a href="#booking" class="outline-btn">
+
+                    Book A Test
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Floating Lab Card -->
+
+        <div class="lab-floating-card">
+
+            <div class="floating-icon">
+
+                <i class="fa-solid fa-flask-vial"></i>
+
+            </div>
+
+            <div>
+
+                <strong>500+</strong>
+
+                <span>Tests Available</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     INTRO
+========================================= -->
+
+<section class="lab-intro">
+
+    <div class="container intro-grid">
+
+
+        <div class="intro-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1000&q=85"
+                alt="Medical Laboratory">
+
+            <div class="image-badge">
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+                <div>
+
+                    <strong>Trusted</strong>
+
+                    <span>Diagnostic Care</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="intro-content">
+
+            <p class="section-tag">
+                OUR LABORATORY
+            </p>
+
+
+            <h2>
+
+                Precision You Can
+                <span>Trust.</span>
+
+            </h2>
+
+
+            <p>
+
+                Our modern diagnostic laboratory combines
+                advanced technology with experienced laboratory
+                professionals to provide accurate results.
+
+            </p>
+
+
+            <p>
+
+                From routine blood tests to specialized
+                diagnostics, every sample is handled with
+                strict quality and safety standards.
+
+            </p>
+
+
+            <div class="lab-stats">
+
+                <div>
+
+                    <strong>15+</strong>
+
+                    <span>Years Experience</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>500+</strong>
+
+                    <span>Diagnostic Tests</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>24/7</strong>
+
+                    <span>Emergency Support</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     TESTS
+========================================= -->
+
+<section class="tests" id="tests">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <p class="section-tag">
+                POPULAR TESTS
+            </p>
+
+
+            <h2>
+
+                Tests For
+                <span>Every Need.</span>
+
+            </h2>
+
+
+            <p>
+
+                Choose from our wide range of laboratory
+                investigations and diagnostic tests.
+
+            </p>
+
+        </div>
+
+
+        <div class="test-grid">
+
+
+            <!-- Test 1 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    01
+                </div>
+
+
+                <h3>
+                    Complete Blood Count
+                </h3>
+
+
+                <p>
+
+                    CBC test for evaluating red blood cells,
+                    white blood cells and platelets.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Blood Test
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Test 2 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-vial"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    02
+                </div>
+
+
+                <h3>
+                    Blood Sugar
+                </h3>
+
+
+                <p>
+
+                    Blood glucose testing for monitoring
+                    and evaluating blood sugar levels.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Biochemistry
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Test 3 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-dna"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    03
+                </div>
+
+
+                <h3>
+                    Thyroid Profile
+                </h3>
+
+
+                <p>
+
+                    Comprehensive thyroid testing including
+                    T3, T4 and TSH levels.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Hormone Test
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Test 4 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-microscope"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    04
+                </div>
+
+
+                <h3>
+                    Urine Analysis
+                </h3>
+
+
+                <p>
+
+                    Routine urine examination for detecting
+                    infections and other health conditions.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Pathology
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Test 5 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-virus"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    05
+                </div>
+
+
+                <h3>
+                    Infection Screening
+                </h3>
+
+
+                <p>
+
+                    Diagnostic screening tests for detecting
+                    common infections.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Microbiology
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Test 6 -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </div>
+
+
+                <div class="test-number">
+                    06
+                </div>
+
+
+                <h3>
+                    Lipid Profile
+                </h3>
+
+
+                <p>
+
+                    Cholesterol and triglyceride testing for
+                    cardiovascular health assessment.
+
+                </p>
+
+
+                <div class="test-bottom">
+
+                    <span>
+                        Cardiac Health
+                    </span>
+
+                    <a href="#booking">
+
+                        Book
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     DIAGNOSTIC SERVICES
+========================================= -->
+
+<section class="diagnostics">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <p class="section-tag">
+                DIAGNOSTIC SERVICES
+            </p>
+
+
+            <h2>
+
+                Complete
+                <span>Diagnostics.</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="diagnostic-grid">
+
+
+            <div class="diagnostic-card">
+
+                <i class="fa-solid fa-flask"></i>
+
+                <h3>
+                    Biochemistry
+                </h3>
+
+                <p>
+                    Advanced biochemical testing for
+                    comprehensive health assessment.
+                </p>
+
+            </div>
+
+
+            <div class="diagnostic-card">
+
+                <i class="fa-solid fa-microscope"></i>
+
+                <h3>
+                    Pathology
+                </h3>
+
+                <p>
+                    Accurate tissue, blood and body-fluid
+                    examination.
+                </p>
+
+            </div>
+
+
+            <div class="diagnostic-card">
+
+                <i class="fa-solid fa-virus"></i>
+
+                <h3>
+                    Microbiology
+                </h3>
+
+                <p>
+                    Identification and testing of infectious
+                    organisms.
+                </p>
+
+            </div>
+
+
+            <div class="diagnostic-card">
+
+                <i class="fa-solid fa-dna"></i>
+
+                <h3>
+                    Molecular Diagnostics
+                </h3>
+
+                <p>
+                    Modern molecular testing for specialized
+                    diagnostic requirements.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     WHY CHOOSE US
+========================================= -->
+
+<section class="why-lab">
+
+    <div class="container why-grid">
+
+
+        <div class="why-content">
+
+            <p class="section-tag">
+                WHY OUR LAB
+            </p>
+
+
+            <h2>
+
+                Quality Results.
+                <span>Every Time.</span>
+
+            </h2>
+
+
+            <div class="why-list">
+
+
+                <div class="why-item">
+
+                    <div class="why-icon">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Accurate Results
+                        </h3>
+
+                        <p>
+                            Advanced equipment and quality
+                            control procedures.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <div class="why-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Fast Reporting
+                        </h3>
+
+                        <p>
+                            Timely reports to help doctors
+                            make faster decisions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <div class="why-icon">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Safe & Hygienic
+                        </h3>
+
+                        <p>
+                            Strict sample handling and
+                            infection-control practices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="why-box">
+
+            <i class="fa-solid fa-flask-vial"></i>
+
+            <strong>
+                99.8%
+            </strong>
+
+            <span>
+                Quality Accuracy
+            </span>
+
+            <div class="progress">
+
+                <span></span>
+
+            </div>
+
+            <p>
+                Our laboratory follows strict quality
+                procedures throughout the testing process.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     BOOKING
+========================================= -->
+
+<section class="booking" id="booking">
+
+    <div class="container booking-inner">
+
+
+        <div class="booking-content">
+
+            <p class="section-tag">
+                BOOK A TEST
+            </p>
+
+
+            <h2>
+
+                Get Your Tests
+                <span>Done Easily.</span>
+
+            </h2>
+
+
+            <p>
+
+                Schedule your laboratory test and get reliable
+                diagnostic care from our experienced team.
+
+            </p>
+
+
+            <div class="booking-contact">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <div>
+
+                    <span>Call Laboratory</span>
+
+                    <strong>
+                        +91 98765 43210
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <form class="booking-form">
+
+
+            <div class="input-group">
+
+                <label>
+                    Patient Name
+                </label>
+
+                <input
+                    type="text"
+                    placeholder="Enter patient name"
+                    required>
+
+            </div>
+
+
+            <div class="input-row">
+
+                <div class="input-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        placeholder="Phone number"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Test
+                    </label>
+
+                    <select required>
+
+                        <option value="">
+                            Select Test
+                        </option>
+
+                        <option>
+                            Complete Blood Count
+                        </option>
+
+                        <option>
+                            Blood Sugar
+                        </option>
+
+                        <option>
+                            Thyroid Profile
+                        </option>
+
+                        <option>
+                            Lipid Profile
+                        </option>
+
+                        <option>
+                            Urine Analysis
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Preferred Date
+                </label>
+
+                <input
+                    type="date"
+                    required>
+
+            </div>
+
+
+            <button type="submit">
+
+                Book Laboratory Test
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+
+
+
+<!-- GSAP -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+    // ==========================================
+// GSAP
+// ==========================================
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+
+const menu = document.querySelector(".menu");
+const nav = document.querySelector("nav");
+
+if (menu && nav) {
+
+    menu.addEventListener("click", () => {
+
+        nav.classList.toggle("active");
+
+        const icon = menu.querySelector("i");
+
+        if (nav.classList.contains("active")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// NAVBAR
+// ==========================================
+
+gsap.from(".navbar", {
+
+    y: -50,
+
+    duration: .8,
+
+    ease: "power3.out"
+
+});
+
+
+// ==========================================
+// HERO
+// ==========================================
+
+gsap.from(".hero-content", {
+
+    x: -60,
+
+    duration: 1,
+
+    ease: "power3.out"
+
+});
+
+
+gsap.from(".lab-floating-card", {
+
+    x: 60,
+
+    duration: 1,
+
+    delay: .3,
+
+    ease: "back.out(1.5)"
+
+});
+
+
+// ==========================================
+// HERO BACKGROUND
+// ==========================================
+
+gsap.to(".lab-hero-bg", {
+
+    scale: 1.08,
+
+    ease: "none",
+
+    scrollTrigger: {
+
+        trigger: ".lab-hero",
+
+        start: "top top",
+
+        end: "bottom top",
+
+        scrub: 1
+
+    }
+
+});
+
+
+// ==========================================
+// FLOATING CARD
+// ==========================================
+
+gsap.to(".lab-floating-card", {
+
+    y: -12,
+
+    duration: 2,
+
+    repeat: -1,
+
+    yoyo: true,
+
+    ease: "sine.inOut"
+
+});
+
+
+// ==========================================
+// INTRO
+// ==========================================
+
+gsap.from(".intro-image", {
+
+    x: -60,
+
+    duration: .9,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".lab-intro",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+gsap.from(".intro-content", {
+
+    x: 60,
+
+    duration: .9,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".lab-intro",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// TEST HEADING
+// ==========================================
+
+gsap.from(".tests .section-heading", {
+
+    y: 40,
+
+    duration: .8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".tests",
+
+        start: "top 85%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// TEST CARDS
+// ==========================================
+
+document.querySelectorAll(".test-card").forEach((card, index) => {
+
+    gsap.fromTo(
+
+        card,
+
+        {
+            y: 25
+        },
+
+        {
+            y: 0,
+
+            duration: .6,
+
+            delay: index * .06,
+
+            ease: "power2.out",
+
+            scrollTrigger: {
+
+                trigger: card,
+
+                start: "top 95%",
+
+                once: true
+
+            }
+
+        }
+
+    );
+
+
+    const icon = card.querySelector(".test-icon");
+
+
+    card.addEventListener("mouseenter", () => {
+
+        gsap.to(card, {
+
+            y: -8,
+
+            scale: 1.02,
+
+            duration: .3,
+
+            ease: "power2.out"
+
+        });
+
+
+        if (icon) {
+
+            gsap.to(icon, {
+
+                scale: 1.12,
+
+                rotation: 5,
+
+                duration: .3,
+
+                ease: "back.out(1.5)"
+
+            });
+
+        }
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+        gsap.to(card, {
+
+            y: 0,
+
+            scale: 1,
+
+            duration: .3
+
+        });
+
+
+        if (icon) {
+
+            gsap.to(icon, {
+
+                scale: 1,
+
+                rotation: 0,
+
+                duration: .3
+
+            });
+
+        }
+
+    });
+
+});
+
+
+// ==========================================
+// DIAGNOSTICS
+// ==========================================
+
+document.querySelectorAll(".diagnostic-card").forEach((card, index) => {
+
+    gsap.fromTo(
+
+        card,
+
+        {
+            y: 25
+        },
+
+        {
+            y: 0,
+
+            duration: .6,
+
+            delay: index * .08,
+
+            ease: "power2.out",
+
+            scrollTrigger: {
+
+                trigger: card,
+
+                start: "top 95%",
+
+                once: true
+
+            }
+
+        }
+
+    );
+
+});
+
+
+// ==========================================
+// WHY SECTION
+// ==========================================
+
+gsap.from(".why-content", {
+
+    x: -60,
+
+    duration: .8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".why-lab",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+gsap.from(".why-box", {
+
+    x: 60,
+
+    duration: .8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".why-lab",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// PROGRESS BAR
+// ==========================================
+
+gsap.from(".progress span", {
+
+    width: "0%",
+
+    duration: 1.5,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".progress",
+
+        start: "top 85%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// BOOKING
+// ==========================================
+
+gsap.from(".booking-content", {
+
+    x: -50,
+
+    duration: .8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".booking",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+gsap.from(".booking-form", {
+
+    x: 50,
+
+    duration: .8,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: ".booking",
+
+        start: "top 80%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// FORM SUBMIT
+// ==========================================
+
+const form = document.querySelector(".booking-form");
+
+if (form) {
+
+    form.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        alert("Your laboratory test booking request has been submitted.");
+
+    });
+
+}
+
+
+// ==========================================
+// FOOTER
+// ==========================================
+
+gsap.from(".footer-grid > div", {
+
+    y: 25,
+
+    duration: .6,
+
+    stagger: .1,
+
+    ease: "power3.out",
+
+    scrollTrigger: {
+
+        trigger: "footer",
+
+        start: "top 95%",
+
+        once: true
+
+    }
+
+});
+
+
+// ==========================================
+// REFRESH
+// ==========================================
+
+window.addEventListener("load", () => {
+
+    ScrollTrigger.refresh();
+
+});
+
+
+</script>
+
+</body>
+
+</html>
+{% endblock %}

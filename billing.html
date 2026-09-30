@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Billing</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7fb;
+            color: #202638;
+            padding: 30px;
+        }
+
+        .billing-wrapper {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .hospital-header {
+            background: linear-gradient(
+                135deg,
+                #172554,
+                #2563eb
+            );
+
+            color: white;
+            border-radius: 22px;
+
+            padding: 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 15px 40px rgba(37,99,235,.18);
+
+            margin-bottom: 22px;
+        }
+
+        .hospital-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .hospital-icon {
+            width: 65px;
+            height: 65px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,.14);
+
+            font-size: 30px;
+        }
+
+        .hospital-name {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .hospital-address {
+            margin-top: 6px;
+
+            font-size: 11px;
+            opacity: .85;
+
+            line-height: 1.6;
+        }
+
+        .bill-badge {
+            text-align: right;
+        }
+
+        .bill-badge span {
+            display: block;
+
+            font-size: 9px;
+            letter-spacing: 2px;
+
+            opacity: .75;
+        }
+
+        .bill-badge strong {
+            display: block;
+
+            font-size: 20px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .section-card {
+            background: white;
+
+            border: 1px solid #e5e9f2;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 10px 35px rgba(30,45,80,.05);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+            padding-bottom: 17px;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: #eff5ff;
+
+            color: #2563eb;
+
+            font-size: 17px;
+        }
+
+        .section-title h3 {
+            color: #202638;
+
+            font-size: 16px;
+
+            border: none;
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+        .section-title p {
+            color: #98a0b2;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+
+        /* ================= GRID ================= */
+
+        .row {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        label {
+            color: #626a7c;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* ================= INPUT ================= */
+
+        input,
+        select {
+            width: 100%;
+
+            height: 45px;
+
+            border: 1px solid #dfe4ed;
+
+            border-radius: 10px;
+
+            padding: 0 13px;
+
+            outline: none;
+
+            background: #fbfcfe;
+
+            color: #293043;
+
+            font-size: 10px;
+
+            transition: .25s;
+        }
+
+        input:focus,
+        select:focus {
+            background: white;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37,99,235,.08);
+        }
+
+
+        /* ================= SERVICES ================= */
+
+        .service-box {
+            background: #f8faff;
+
+            border: 1px solid #e4e9f3;
+
+            border-radius: 15px;
+
+            padding: 17px;
+
+            margin-bottom: 12px;
+
+            transition: .25s;
+        }
+
+        .service-box:hover {
+            border-color: #cbd8f7;
+
+            box-shadow:
+                0 8px 25px
+                rgba(37,99,235,.05);
+        }
+
+        .service-row {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap: 12px;
+
+            align-items: end;
+        }
+
+        .service-row input {
+            background: white;
+        }
+
+        .total {
+            color: #2563eb;
+
+            font-weight: 800;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .btn {
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            transition: .25s;
+        }
+
+        .add-btn {
+            background: #eaf7ef;
+
+            color: #16834b;
+
+            border: 1px solid #ccebd8;
+
+            margin-top: 5px;
+        }
+
+        .add-btn:hover {
+            background: #16834b;
+
+            color: white;
+        }
+
+        .remove-btn {
+            background: #fff0f1;
+
+            color: #d94152;
+
+            margin-top: 12px;
+        }
+
+        .remove-btn:hover {
+            background: #d94152;
+
+            color: white;
+        }
+
+
+        /* ================= PAYMENT ================= */
+
+        .payment-summary {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .summary-box {
+            background:
+                linear-gradient(
+                    145deg,
+                    #172554,
+                    #2563eb
+                );
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+        }
+
+        .summary-box h3 {
+            color: white;
+
+            border: none;
+
+            margin: 0 0 22px;
+
+            padding: 0;
+
+            font-size: 16px;
+        }
+
+        .summary-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.12);
+
+            font-size: 10px;
+        }
+
+        .summary-item span {
+            opacity: .75;
+        }
+
+        .summary-item strong {
+            font-size: 12px;
+        }
+
+        .balance-box {
+            margin-top: 17px;
+
+            padding: 18px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.12);
+        }
+
+        .balance-box span {
+            display: block;
+
+            font-size: 8px;
+
+            opacity: .7;
+        }
+
+        .balance-box strong {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 26px;
+        }
+
+
+        /* ================= FINAL BUTTON ================= */
+
+        .generate-btn {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 9px;
+
+            width: 280px;
+
+            margin: 25px auto 5px;
+
+            padding: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 11px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,.2);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(37,99,235,.28);
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .hospital-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .bill-badge {
+                text-align: left;
+            }
+
+            .row,
+            .payment-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .service-row {
+                grid-template-columns: 1fr;
+            }
+
+            .generate-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="billing-wrapper">
+
+
+<form method="post">
+
+{% csrf_token %}
+
+
+<!-- ================= HOSPITAL HEADER ================= -->
+
+<div class="hospital-header">
+
+    <div class="hospital-left">
+
+        <div class="hospital-icon">
+            <i class="fa-solid fa-hospital"></i>
+        </div>
+
+        <div>
+
+            <h1 class="hospital-name">
+                ⚕ Balaji Hospital
+            </h1>
+
+            <div class="hospital-address">
+                Above HDFC Bank, Ambedkar Road, Karimnagar
+                <br>
+                Ph: 9247 422727, 9550 422727
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bill-badge">
+
+        <span>
+            HOSPITAL INVOICE
+        </span>
+
+        <strong>
+            FINAL BILL
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= PATIENT DETAILS ================= -->
+
+<div class="section-card">
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            <i class="fa-solid fa-user-injured"></i>
+        </div>
+
+        <div>
+
+            <h3>
+                Patient Details
+            </h3>
+
+            <p>
+                Patient identification and admission information
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="form-group">
+
+            <label>IPNO</label>
+
+            <input
+                type="text"
+                name="ipno"
+                placeholder="Enter IP Number"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>UHID</label>
+
+            <input
+                type="text"
+                name="uhid"
+                placeholder="Enter UHID"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Bill No</label>
+
+            <input
+                type="text"
+                name="bill_no"
+                placeholder="Enter Bill Number"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Patient Name</label>
+
+            <input
+                type="text"
+                name="patient_name"
+                placeholder="Enter Patient Name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Age</label>
+
+            <input
+                type="number"
+                name="age"
+                placeholder="Enter Age"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Gender</label>
+
+            <select name="gender">
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="MALE">
+                    Male
+                </option>
+
+                <option value="FEMALE">
+                    Female
+                </option>
+
+                <option value="OTHER">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Relation Name</label>
+
+            <input
+                type="text"
+                name="relation_name"
+                placeholder="Father / Husband Name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Room / Bed No</label>
+
+            <input
+                type="text"
+                name="room_bed"
+                placeholder="Example: ICU / ICU 1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Doctor Name</label>
+
+            <input
+                type="text"
+                name="doctor"
+                placeholder="Enter Doctor Name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Patient Category</label>
+
+            <select name="category">
+
+                <option value="PAYMENT">
+                    Payment
+                </option>
+
+                <option value="CASH">
+                    Cash
+                </option>
+
+                <option value="INSURANCE">
+                    Insurance
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= DATE DETAILS ================= -->
+
+<div class="section-card">
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            <i class="fa-solid fa-calendar-days"></i>
+        </div>
+
+        <div>
+
+            <h3>
+                Admission / Discharge Details
+            </h3>
+
+            <p>
+                Hospital stay date and time
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="form-group">
+
+            <label>Bill Date</label>
+
+            <input
+                type="date"
+                name="bill_date"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Bill Time</label>
+
+            <input
+                type="time"
+                name="bill_time"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Admission Date</label>
+
+            <input
+                type="date"
+                name="admission_date"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Admission Time</label>
+
+            <input
+                type="time"
+                name="admission_time"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Discharge Date</label>
+
+            <input
+                type="date"
+                name="discharge_date"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Discharge Time</label>
+
+            <input
+                type="time"
+                name="discharge_time"
+            >
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= SERVICES ================= -->
+
+<div class="section-card">
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+        </div>
+
+        <div>
+
+            <h3>
+                Hospital Services
+            </h3>
+
+            <p>
+                Add hospital services and calculate charges
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="services">
+
+
+        <div class="service-box">
+
+            <div class="service-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Service Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="service_name[]"
+                        placeholder="Example: ICU Charges"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Rate
+                    </label>
+
+                    <input
+                        type="number"
+                        name="rate[]"
+                        class="rate"
+                        oninput="calculate(this)"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Count
+                    </label>
+
+                    <input
+                        type="number"
+                        name="count[]"
+                        value="1"
+                        class="count"
+                        oninput="calculate(this)"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Total
+                    </label>
+
+                    <input
+                        type="number"
+                        name="total[]"
+                        class="total"
+                        readonly
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        type="button"
+        class="btn add-btn"
+        onclick="addService()"
+    >
+        <i class="fa-solid fa-plus"></i>
+        Add Service
+    </button>
+
+
+</div>
+
+
+
+<!-- ================= PAYMENT ================= -->
+
+<div class="section-card">
+
+    <div class="section-title">
+
+        <div class="section-icon">
+            <i class="fa-solid fa-credit-card"></i>
+        </div>
+
+        <div>
+
+            <h3>
+                Payment Details
+            </h3>
+
+            <p>
+                Discount, advance and payment information
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="payment-summary">
+
+
+        <div>
+
+            <div class="row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Discount Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="discount"
+                        name="discount"
+                        value="0"
+                        oninput="calculateGrandTotal()"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Total Advance
+                    </label>
+
+                    <input
+                        type="number"
+                        id="advance"
+                        name="advance"
+                        value="0"
+                        oninput="calculateGrandTotal()"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Paid Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="paid"
+                        name="paid"
+                        value="0"
+                        oninput="calculateGrandTotal()"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Balance Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="balance"
+                        name="balance"
+                        value="0"
+                        readonly
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-box">
+
+            <h3>
+                <i class="fa-solid fa-receipt"></i>
+                Payment Summary
+            </h3>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Gross Amount
+                </span>
+
+                <strong id="grossDisplay">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Discount
+                </span>
+
+                <strong id="discountDisplay">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Advance
+                </span>
+
+                <strong id="advanceDisplay">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Paid
+                </span>
+
+                <strong id="paidDisplay">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="balance-box">
+
+                <span>
+                    BALANCE AMOUNT
+                </span>
+
+                <strong id="balanceDisplay">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= SUBMIT ================= -->
+
+<button
+    type="submit"
+    class="btn generate-btn"
+>
+
+    <i class="fa-solid fa-file-invoice"></i>
+
+    Generate Final Bill
+
+</button>
+
+
+</form>
+
+</div>
+
+
+
+<script>
+
+
+/* ================= ADD SERVICE ================= */
+
+function addService() {
+
+    let services =
+        document.getElementById("services");
+
+
+    let service =
+        document.createElement("div");
+
+
+    service.className =
+        "service-box";
+
+
+    service.innerHTML = `
+
+        <div class="service-row">
+
+            <div class="form-group">
+
+                <label>
+                    Service Name
+                </label>
+
+                <input
+                    type="text"
+                    name="service_name[]"
+                    placeholder="Service Name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Rate
+                </label>
+
+                <input
+                    type="number"
+                    name="rate[]"
+                    class="rate"
+                    oninput="calculate(this)"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Count
+                </label>
+
+                <input
+                    type="number"
+                    name="count[]"
+                    value="1"
+                    class="count"
+                    oninput="calculate(this)"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Total
+                </label>
+
+                <input
+                    type="number"
+                    name="total[]"
+                    class="total"
+                    readonly
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn remove-btn"
+            onclick="this.parentElement.remove(); calculateGrandTotal();"
+        >
+
+            <i class="fa-solid fa-trash"></i>
+            Remove
+
+        </button>
+
+    `;
+
+
+    services.appendChild(service);
+
+}
+
+
+
+/* ================= SERVICE CALCULATION ================= */
+
+function calculate(element) {
+
+    let box =
+        element.closest(".service-box");
+
+
+    let rate =
+        box.querySelector(".rate").value || 0;
+
+
+    let count =
+        box.querySelector(".count").value || 0;
+
+
+    let total =
+        Number(rate) * Number(count);
+
+
+    box.querySelector(".total").value =
+        total;
+
+
+    calculateGrandTotal();
+
+}
+
+
+
+/* ================= GRAND TOTAL ================= */
+
+function calculateGrandTotal() {
+
+    let totals =
+        document.querySelectorAll(".total");
+
+
+    let gross = 0;
+
+
+    totals.forEach(function(input) {
+
+        gross +=
+            Number(input.value) || 0;
+
+    });
+
+
+    let discount =
+        Number(
+            document.getElementById("discount").value
+        ) || 0;
+
+
+    let advance =
+        Number(
+            document.getElementById("advance").value
+        ) || 0;
+
+
+    let paid =
+        Number(
+            document.getElementById("paid").value
+        ) || 0;
+
+
+    let net =
+        gross - discount;
+
+
+    let balance =
+        net - advance - paid;
+
+
+    if (balance < 0) {
+
+        balance = 0;
+
+    }
+
+
+    document.getElementById("balance").value =
+        balance;
+
+
+    /* DISPLAY */
+
+    document.getElementById("grossDisplay")
+        .innerText =
+        "₹" + gross.toFixed(2);
+
+
+    document.getElementById("discountDisplay")
+        .innerText =
+        "₹" + discount.toFixed(2);
+
+
+    document.getElementById("advanceDisplay")
+        .innerText =
+        "₹" + advance.toFixed(2);
+
+
+    document.getElementById("paidDisplay")
+        .innerText =
+        "₹" + paid.toFixed(2);
+
+
+    document.getElementById("balanceDisplay")
+        .innerText =
+        "₹" + balance.toFixed(2);
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
