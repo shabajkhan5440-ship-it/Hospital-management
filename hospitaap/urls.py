@@ -20,9 +20,9 @@ urlpatterns = [
     ),
 
      path(
-        "Teprory/",
+        "Temp/",
         views.Temp,
-        name="Teprory"
+        name="Temp"
     ),
 
     path(
