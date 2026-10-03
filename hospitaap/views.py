@@ -535,5 +535,5 @@ def Labratory_doctor(request):
 def Labratory_addpatente(request):
     return render(request,'labratory/labratory_Addpanteint.html')
 def temprory(request):
-    HttpResponse("hello this is my page ")
-    return render(request,"temprory.html")
+    return HttpResponse("hello this is my page ")
+   
