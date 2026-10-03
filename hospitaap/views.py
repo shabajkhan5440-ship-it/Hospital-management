@@ -541,11 +541,18 @@ from django.conf import settings
 
 def temprory(request):
 
-    file_path = Path(settings.BASE_DIR) / "templates" / "temprory.html"
+    if request.method == "POST":
 
-    with open(file_path, "r", encoding="utf-8") as file:
-        html = file.read()
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        doctor = request.POST.get("doctor")
+        date = request.POST.get("date")
 
-    return HttpResponse(html)
+        print(name)
+        print(email)
+        print(doctor)
+        print(date)
+
+    return render(request, "temprory.html")
 
    
