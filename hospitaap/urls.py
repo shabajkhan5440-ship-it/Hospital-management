@@ -20,7 +20,7 @@ urlpatterns = [
     ),
 
      path(
-        "temprory", views.temprory, name="temprory"
+        "temprory/", views.temprory, name="temprory"
     ),
 
     path(
