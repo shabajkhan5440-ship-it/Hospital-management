@@ -534,6 +534,18 @@ def Labratory_doctor(request):
     return render(request,'labratory/labratory_doctor.html')
 def Labratory_addpatente(request):
     return render(request,'labratory/labratory_Addpanteint.html')
+from django.http import HttpResponse
+from pathlib import Path
+from django.conf import settings
+
+
 def temprory(request):
-    return render(request,"temprory.html")
+
+    file_path = Path(settings.BASE_DIR) / "templates" / "temprory.html"
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        html = file.read()
+
+    return HttpResponse(html)
+
    
