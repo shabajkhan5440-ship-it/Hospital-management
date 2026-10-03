@@ -534,5 +534,5 @@ def Labratory_doctor(request):
     return render(request,'labratory/labratory_doctor.html')
 def Labratory_addpatente(request):
     return render(request,'labratory/labratory_Addpanteint.html')
-def Temp(request):
+def temprory(request):
     return render(request,"temprory.html")
