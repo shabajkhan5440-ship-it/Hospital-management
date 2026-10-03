@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment</title>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #f5f7fc;
+
+    color: #202238;
+
+}
+
+
+/* =====================================
+   MAIN
+===================================== */
+
+.appointment-page {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        43% 57%;
+
+}
+
+
+/* =====================================
+   LEFT SIDE
+===================================== */
+
+.appointment-info {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171936,
+            #34358a
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        70px 8%;
+
+}
+
+
+.appointment-info::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 400px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    right: -180px;
+
+    top: -100px;
+
+}
+
+
+.appointment-info::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+
+    height: 250px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    left: -130px;
+
+    bottom: -80px;
+
+}
+
+
+.info-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 470px;
+
+}
+
+
+.top-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px 13px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    color: #bfc2ff;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.top-badge span {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #5df0b0;
+
+    box-shadow:
+        0 0 10px
+        #5df0b0;
+
+}
+
+
+.info-content h1 {
+
+    font-size:
+        clamp(40px, 5vw, 63px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-top: 25px;
+
+}
+
+
+.info-content h1 strong {
+
+    display: block;
+
+    color: #7778ff;
+
+}
+
+
+.info-content > p {
+
+    color: #aeb0c8;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    margin-top: 20px;
+
+    max-width: 410px;
+
+}
+
+
+/* =====================================
+   FEATURES
+===================================== */
+
+.info-features {
+
+    margin-top: 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.feature-icon {
+
+    width: 35px;
+
+    height: 35px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    display: grid;
+
+    place-items: center;
+
+    color: #67e9b2;
+
+    font-size: 13px;
+
+}
+
+
+.feature h4 {
+
+    font-size: 11px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.feature p {
+
+    color: #9295b1;
+
+    font-size: 8px;
+
+}
+
+
+/* =====================================
+   RIGHT SIDE
+===================================== */
+
+.appointment-form-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding:
+        50px 7%;
+
+    background: #f8f9fd;
+
+}
+
+
+.form-wrapper {
+
+    width: 100%;
+
+    max-width: 530px;
+
+    background: white;
+
+    border:
+        1px solid #e9eaf2;
+
+    border-radius: 24px;
+
+    padding:
+        38px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(31,35,72,.08);
+
+}
+
+
+/* =====================================
+   HEADING
+===================================== */
+
+.form-heading {
+
+    margin-bottom: 30px;
+
+}
+
+
+.form-heading > span {
+
+    color: #5a5bef;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.form-heading h2 {
+
+    font-size: 28px;
+
+    margin-top: 7px;
+
+    letter-spacing: -.7px;
+
+}
+
+
+.form-heading p {
+
+    color: #9699aa;
+
+    font-size: 10px;
+
+    margin-top: 7px;
+
+}
+
+
+/* =====================================
+   INPUT
+===================================== */
+
+.input-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    color: #44475b;
+
+    margin-bottom: 7px;
+
+}
+
+
+.input-box {
+
+    height: 51px;
+
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid #e5e6ee;
+
+    border-radius: 10px;
+
+    background: #fafbfe;
+
+    transition:
+        .3s ease;
+
+}
+
+
+.input-box:focus-within {
+
+    border-color:
+        #5a5bef;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(90,91,239,.08);
+
+}
+
+
+.input-icon {
+
+    width: 48px;
+
+    text-align: center;
+
+    color: #7779a0;
+
+    font-size: 14px;
+
+}
+
+
+.input-box input,
+.input-box select {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding-right: 14px;
+
+    color: #303348;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+}
+
+
+.input-box input::placeholder {
+
+    color: #b0b2bd;
+
+}
+
+
+.input-box select {
+
+    cursor: pointer;
+
+}
+
+
+.input-box select option {
+
+    color: #222;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.book-btn {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    margin-top: 7px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #5556e9,
+            #7372f6
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    box-shadow:
+        0 12px 25px
+        rgba(85,86,233,.22);
+
+    transition:
+        .3s ease;
+
+}
+
+
+.book-btn b {
+
+    font-size: 17px;
+
+    transition: .3s;
+
+}
+
+
+.book-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 17px 30px
+        rgba(85,86,233,.3);
+
+}
+
+
+.book-btn:hover b {
+
+    transform:
+        translateX(5px);
+
+}
+
+
+.secure-text {
+
+    text-align: center;
+
+    color: #a4a6b3;
+
+    font-size: 8px;
+
+    margin-top: 17px;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width: 900px) {
+
+    .appointment-page {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .appointment-info {
+
+        min-height: 430px;
+
+        padding:
+            60px 8%;
+
+    }
+
+
+    .appointment-form-area {
+
+        padding:
+            45px 20px;
+
+    }
+
+}
+
+
+@media(max-width: 500px) {
+
+    .appointment-info {
+
+        min-height: 390px;
+
+        padding:
+            45px 22px;
+
+    }
+
+
+    .info-content h1 {
+
+        font-size: 40px;
+
+    }
+
+
+    .form-wrapper {
+
+        padding:
+            25px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .form-heading h2 {
+
+        font-size: 23px;
+
+    }
+
+}
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="appointment-page">
+
+
+    <!-- LEFT SIDE -->
+
+    <div class="appointment-info">
+
+        <div class="info-content">
+
+            <div class="top-badge">
+                <span></span>
+                HEALTHCARE APPOINTMENT
+            </div>
+
+            <h1>
+                Your Health,
+                <strong>Our Priority.</strong>
+            </h1>
+
+            <p>
+                Schedule an appointment with our experienced
+                doctors and get the care you deserve.
+            </p>
+
+
+            <div class="info-features">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h4>Experienced Doctors</h4>
+
+                        <p>
+                            Qualified healthcare professionals
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h4>Easy Appointment</h4>
+
+                        <p>
+                            Book your consultation in seconds
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h4>Quality Healthcare</h4>
+
+                        <p>
+                            Patient-focused medical services
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="appointment-form-area">
+
+        <div class="form-wrapper">
+
+
+            <div class="form-heading">
+
+                <span>
+                    APPOINTMENT
+                </span>
+
+                <h2>
+                    Book an Appointment
+                </h2>
+
+                <p>
+                    Fill in your details below to schedule
+                    your visit.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- PATIENT NAME -->
+
+                <div class="input-group">
+
+                    <label>
+                        Patient Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter patient name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DOCTOR -->
+
+                <div class="input-group">
+
+                    <label>
+                        Select Doctor
+                    </label>
+
+                    <div class="input-box select-box">
+
+                        <span class="input-icon">
+                            ♙
+                        </span>
+
+                        <select
+                            name="doctor"
+                            required
+                        >
+
+                            <option value="">
+                                Select your doctor
+                            </option>
+
+                            <option>
+                                Dr. Rahul Sharma
+                            </option>
+
+                            <option>
+                                Dr. Priya Singh
+                            </option>
+
+                            <option>
+                                Dr. Amit Kumar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div class="input-group">
+
+                    <label>
+                        Appointment Date
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            📅
+                        </span>
+
+                        <input
+                            type="date"
+                            name="date"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="book-btn"
+                >
+
+                    <span>
+                        Book Appointment
+                    </span>
+
+                    <b>
+                        →
+                    </b>
+
+                </button>
+
+
+                <p class="secure-text">
+
+                    🔒 Your information is secure and confidential
+
+                </p>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="{% static 'js/appointment.js' %}"></script>
+
+</body>
+
+</html>
