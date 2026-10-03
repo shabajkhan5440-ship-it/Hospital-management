@@ -37,12 +37,12 @@ urlpatterns = [
     path(
         "Doctor_list/",
         views.doctor_list,
-        name="profile"
+        name="Doctor_list"
     ),
     path(
         "View/",
         views.Show_d,
-        name="profile"
+        name="View"
     ),
     path
     ('Delete/<int:id>/', views.Delete, name='patient_delete'),
