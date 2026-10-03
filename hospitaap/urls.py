@@ -27,7 +27,7 @@ urlpatterns = [
     path(
         "profile/",
         views.profile,
-        name="profile"
+        name="Appointment"
     ),
     path(
         "Appointment/",
