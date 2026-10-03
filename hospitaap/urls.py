@@ -19,6 +19,12 @@ urlpatterns = [
         name="patient_list"
     ),
 
+     path(
+        "Teprory/",
+        views.Temp,
+        name="Teprory"
+    ),
+
     path(
         "Edit<int:id>/",
         views.edit_patient,
