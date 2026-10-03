@@ -32,7 +32,7 @@ urlpatterns = [
     path(
         "Appointment/",
         views.Appointment,
-        name="profile"
+        name="Appointment"
     ),
     path(
         "Doctor_list/",
